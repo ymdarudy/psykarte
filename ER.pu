@@ -1,0 +1,131 @@
+@startuml yonde
+' hide the spot
+hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+entity "**users**" as users {
+  + id [PK]
+  --
+  name
+  avatar
+  admin
+  email
+  encrypted_password
+  reset_password_token
+  reset_password_sent_at
+  remember_created_at
+  sign_in_count
+  current_sign_in_at
+  last_sign_in_at
+  current_sign_in_ip
+  last_sign_in_ip
+  created_at
+  updated_at
+}
+
+entity "**tests**" as tests {
+  + id [PK]
+  --
+  title '
+  description
+  referrer
+  referrer_url
+  thumbnail
+  created_at
+  updated_at
+}
+
+entity "**personalities**" as personalities {
+  + id [PK]
+  # test_id [FK]
+  --
+  name
+  description
+  scoring_system
+  created_at
+  updated_at
+}
+
+entity "**questions**" as questions {
+  + id [PK]
+  # test_id [FK]
+  # personality_id [FK]
+  --
+  title '
+  choice_min_point
+  choice_max_point
+  choice_min_word
+  choice_max_word
+  point_reversal
+  created_at
+  updated_at
+}
+
+entity "**answers**" as answers {
+  + id [PK]
+  # question_id [FK]
+  # user_id [FK]
+  --
+  point
+  created_at
+  updated_at
+}
+
+entity "**supplementary_information**" as supplementary_information {
+  + id [PK]
+  # test_id [FK]
+  --
+  site_name
+  site_url
+  created_at
+  updated_at
+}
+
+entity "**favorites**" as favorites {
+  + id [PK]
+  # user_id [FK]
+  # test_id [FK]
+  --
+  created_at
+}
+
+entity "**categories**" as categories {
+  + id [PK]
+  --
+  name
+  created_at
+  updated_at
+}
+
+entity "**tests_categories**" as tests_categories {
+  + id [PK]
+  # test_id [FK]
+  # category_id [FK]
+  --
+  created_at
+}
+
+entity "**relationships**" as relationships {
+  + id [PK]
+  # follower_id [FK]
+  # followed_id [FK]
+  --
+  created_at
+}
+
+tests ||--|{ supplementary_information
+tests ||--|{ personalities
+tests ||-d-|{ questions
+tests ||--o{ favorites
+tests ||-l-o{ tests_categories
+categories ||-r-o{ tests_categories
+users ||-d-o{ answers
+users ||-d-o{ favorites
+users ||-r-o{ relationships
+users ||-r-o{ relationships
+questions ||-l-o{ answers
+personalities ||--|{ questions
+
+@enduml
