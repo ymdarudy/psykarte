@@ -1,24 +1,44 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 開発言語
+* Ruby 3.0.1
+* Ruby on Rails 6.1.6
 
-Things you may want to cover:
+## 就業Termの技術
+* Devise
+* お気に入り機能
 
-* Ruby version
+## カリキュラム外の技術
+* gem rails_admin, gem cancancanを使った管理者機能
+* gem ransackを利用した検索機能
+* gem chartkickを利用したグラフ機能
 
-* System dependencies
+## 実行手順
 
-* Configuration
+```
+$ git clone git@github.com:ymdarudy/psikarte.git
+$ cd psikarte
+$ bundle
+$ rails db:create db:migrate
+$ rails db:seed
+$ rails s
+```
 
-* Database creation
+## カタログ設計, テーブル設計
+https://docs.google.com/spreadsheets/d/1TEDiH__0xlwXfDFIAFpcVRhMCDg2fTgPC1nBJ0EO8-s/edit#gid=782464957
 
-* Database initialization
 
-* How to run the test suite
+## ワイヤーフレーム
+draw.ioリンク
+https://drive.google.com/file/d/1E69mS4ZEJyVlhp7KPDb22VjElnhK-jTK/view?usp=sharing
+![ワイヤーフレーム](docs/wire-frame.png)
 
-* Services (job queues, cache servers, search engines, etc.)
+## ER図　
+![ER図](docs/ER.png)
 
-* Deployment instructions
 
-* ...
+## 画面遷移図
+draw.ioリンク
+https://drive.google.com/file/d/18fVDwUAbLggvkVWvX5i9IAUPNkntpHV4/view?usp=sharing
+![画面遷移図 ](docs/ui-flow.png)
+
