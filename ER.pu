@@ -107,14 +107,6 @@ entity "**tests_categories**" as tests_categories {
   created_at
 }
 
-entity "**relationships**" as relationships {
-  + id [PK]
-  # follower_id [FK]
-  # followed_id [FK]
-  --
-  created_at
-}
-
 tests ||--|{ supplementary_information
 tests ||--|{ personalities
 tests ||-d-|{ questions
@@ -123,8 +115,6 @@ tests ||-l-o{ tests_categories
 categories ||-r-o{ tests_categories
 users ||-d-o{ answers
 users ||-d-o{ favorites
-users ||-r-o{ relationships
-users ||-r-o{ relationships
 questions ||-l-o{ answers
 personalities ||--|{ questions
 
