@@ -73,7 +73,7 @@ entity "**answers**" as answers {
   updated_at
 }
 
-entity "**supplementary_information**" as supplementary_information {
+entity "**supplementary_informations**" as supplementary_informations {
   + id [PK]
   # test_id [FK]
   --
