@@ -1,4 +1,4 @@
-@startuml yonde
+@startuml ER
 ' hide the spot
 hide circle
 
@@ -50,7 +50,6 @@ entity "**personalities**" as personalities {
 
 entity "**questions**" as questions {
   + id [PK]
-  # test_id [FK]
   # personality_id [FK]
   --
   title '
@@ -107,9 +106,8 @@ entity "**tests_categories**" as tests_categories {
   created_at
 }
 
-tests ||--|{ supplementary_informations
+tests ||-r-|{ supplementary_informations
 tests ||--|{ personalities
-tests ||-d-|{ questions
 tests ||--o{ favorites
 tests ||-l-o{ tests_categories
 categories ||-r-o{ tests_categories
