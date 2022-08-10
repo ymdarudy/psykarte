@@ -107,7 +107,7 @@ entity "**tests_categories**" as tests_categories {
   created_at
 }
 
-tests ||--|{ supplementary_information
+tests ||--|{ supplementary_informations
 tests ||--|{ personalities
 tests ||-d-|{ questions
 tests ||--o{ favorites
