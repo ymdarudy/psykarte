@@ -14,6 +14,7 @@
     <header>
       <% if user_signed_in? %>
         <div>あなたの名前:<%= current_user.name %></div>
+        <%= link_to_if current_user.admin?, "管理画面", rails_admin_path %>
         <%# TODO:　マイページ実装したら修正 %>
         <%= link_to "マイページ(実装前）" %>
         <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
