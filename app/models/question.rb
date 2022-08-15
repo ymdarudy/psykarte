@@ -6,5 +6,5 @@ class Question < ApplicationRecord
   validates :choice_max_point, presence: true, numericality: { only_integer: true }
   validates :choice_min_word, presence: true, length: { maximum: 30 }
   validates :choice_max_word, presence: true, length: { maximum: 30 }
-  validates :point_reversal, presence: true
+  validates :point_reversal, inclusion: [true, false]
 end
