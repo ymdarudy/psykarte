@@ -11,6 +11,23 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <% if user_signed_in? %>
+        <div>あなたの名前:<%= current_user.name %></div>
+        <%# TODO:　マイページ実装したら修正 %>
+        <%= link_to "マイページ(実装前）" %>
+        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to "トップ", root_path %>
+        <%= link_to '新規登録', new_user_registration_path %>
+        <%= link_to 'ログイン', new_user_session_path %>
+      <% end %>
+    </header>
+
+    <div>
+      <p class="alert alert-notice"><%= notice if notice %></p>
+      <p class="alert alert-error"><%= alert if alert %></p>
+      <%= yield %>
+    </div>
   </body>
 </html>
