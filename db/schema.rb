@@ -10,10 +10,52 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_15_045453) do
+ActiveRecord::Schema.define(version: 2022_08_15_085412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "personalities", force: :cascade do |t|
+    t.bigint "psychology_test_id", null: false
+    t.string "name", limit: 30, null: false
+    t.text "description", null: false
+    t.integer "scoring_system", default: 1, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["psychology_test_id"], name: "index_personalities_on_psychology_test_id"
+  end
+
+  create_table "psychology_tests", force: :cascade do |t|
+    t.string "title", limit: 255, null: false
+    t.text "description", null: false
+    t.text "referrer", null: false
+    t.text "referrer_url"
+    t.text "thumbnail"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.text "title", null: false
+    t.integer "choice_min_point", null: false
+    t.integer "choice_max_point", null: false
+    t.string "choice_min_word", limit: 30, null: false
+    t.string "choice_max_word", limit: 30, null: false
+    t.boolean "point_reversal", default: false, null: false
+    t.bigint "personality_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["personality_id"], name: "index_questions_on_personality_id"
+  end
+
+  create_table "supplementary_informations", force: :cascade do |t|
+    t.bigint "psychology_test_id", null: false
+    t.string "site_name"
+    t.string "site_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["psychology_test_id"], name: "index_supplementary_informations_on_psychology_test_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name", limit: 50, null: false
@@ -35,4 +77,7 @@ ActiveRecord::Schema.define(version: 2022_08_15_045453) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "personalities", "psychology_tests"
+  add_foreign_key "questions", "personalities"
+  add_foreign_key "supplementary_informations", "psychology_tests"
 end

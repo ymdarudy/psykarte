@@ -16,8 +16,8 @@
 ## 実行手順
 
 ```
-$ git clone git@github.com:ymdarudy/psikarte.git
-$ cd psikarte
+$ git clone git@github.com:ymdarudy/psykarte.git
+$ cd psykarte
 $ bundle
 $ rails db:create db:migrate
 $ rails db:seed
