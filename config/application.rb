@@ -6,7 +6,7 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Psikarte
+module Psykarte
   class Application < Rails::Application
     config.load_defaults 6.1
 
@@ -14,5 +14,10 @@ module Psikarte
     config.active_record.default_timezone = :local
 
     config.i18n.default_locale = :ja
+
+    config.generators do |g|
+      g.assets false
+      g.helper false
+    end
   end
 end
