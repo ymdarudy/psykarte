@@ -4,5 +4,6 @@ class PsychologyTestsController < ApplicationController
   end
 
   def show
+    @psychology_test = PsychologyTest.find(params[:id])
   end
 end
