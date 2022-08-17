@@ -3,16 +3,19 @@
 <%= simple_format(@psychology_test.how_to_answer) %>
 <hr>
 
-<% Question.where(personality: Personality.where(psychology_test: @psychology_test)).each_with_index do |question, i| %>
-  <p><%= "#{i+1}. #{question.title}" %></p>
-  <div>
-    <%= question.choice_min_word %>
-    <% choice_points = (question.choice_min_point..question.choice_max_point).to_a %>
-    <% choice_points.each do |point| %>
-      <%= radio_button :answer, "point#{question.id}", point, {style: "transform:scale(#{((choice_points.size)/2 - point).abs/2.to_f + 1})"} %>
-      <%= label :answer_point, "" %>
-    <% end %>
-    <%= question.choice_max_word %>
-  </div>
-  <hr class="question-border">
+<%= form_with(model: @answer, method: :post) do |f| %>
+  <% Question.where(personality: Personality.where(psychology_test: @psychology_test)).each_with_index do |question, i| %>
+    <p><%= "#{i+1}. #{question.title}" %></p>
+    <div>
+      <%= question.choice_min_word %>
+      <% choice_points = (question.choice_min_point..question.choice_max_point).to_a %>
+      <% choice_points.each do |point| %>
+        <%= f.radio_button question.id, point, {style: "transform:scale(#{((choice_points.size)/2 - point).abs/2.to_f + 1})"} %>
+        <%= label :answers_point, "" %>
+      <% end %>
+      <%= question.choice_max_word %>
+    </div>
+    <hr class="question-border">
+  <% end %>
+  <%= f.submit %>
 <% end %>
