@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_15_085412) do
+ActiveRecord::Schema.define(version: 2022_08_17_020641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
+    t.bigint "question_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "point", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
+    t.index ["user_id"], name: "index_answers_on_user_id"
+  end
 
   create_table "personalities", force: :cascade do |t|
     t.bigint "psychology_test_id", null: false
@@ -77,6 +87,8 @@ ActiveRecord::Schema.define(version: 2022_08_15_085412) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "answers", "questions"
+  add_foreign_key "answers", "users"
   add_foreign_key "personalities", "psychology_tests"
   add_foreign_key "questions", "personalities"
   add_foreign_key "supplementary_informations", "psychology_tests"
