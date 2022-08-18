@@ -1,6 +1,6 @@
 class Personality < ApplicationRecord
   belongs_to :psychology_test
-  has_many :questions
+  has_many :questions, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 30 }
   validates :description, presence: true

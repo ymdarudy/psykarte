@@ -1,5 +1,6 @@
 class Question < ApplicationRecord
   belongs_to :personality
+  has_many :answers, dependent: :destroy
 
   validates :title, presence: true
   validates :choice_min_point, presence: true, numericality: { only_integer: true }
