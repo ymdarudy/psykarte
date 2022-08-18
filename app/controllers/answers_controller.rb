@@ -23,5 +23,6 @@ class AnswersController < ApplicationController
 
   def show
     @psychology_test = PsychologyTest.find(session[:psychology_test_id])
+    @points = []
   end
 end
