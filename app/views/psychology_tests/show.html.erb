@@ -9,6 +9,7 @@
     <div>
       <%= question.choice_min_word %>
       <% choice_points = (question.choice_min_point..question.choice_max_point).to_a %>
+      <% choice_points.reverse! if question.point_reversal? %>
       <% choice_points.each do |point| %>
         <%= f.radio_button question.id, point, {style: "transform:scale(#{((choice_points.size)/2 - point).abs/2.to_f + 1})"} %>
         <%= label :answers_point, "" %>
