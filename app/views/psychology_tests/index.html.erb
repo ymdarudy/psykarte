@@ -7,7 +7,7 @@
   <h2><%= link_to test.title, psychology_test_path(test) %></h2>
   <p><strong><%= test.description %></strong></p>
   <small>
-    参照元
+    参照元:
     <%= link_to test.referrer, test.referrer_url, target: :_blank, rel: "noopener noreferrer" %>
   </small>
   <hr>

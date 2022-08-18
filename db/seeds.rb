@@ -17,6 +17,19 @@ short_big_five = PsychologyTest.create(
   referrer_url: "https://yuchrszk.blogspot.com/2017/06/sbf.html",
 )
 
+SupplementaryInformation.create([
+  {
+    psychology_test: short_big_five,
+    site_name: "自分の性格が最も正確にわかる10の質問",
+    site_url: "https://daigoblog.jp/shortbig5/",
+  },
+  {
+    psychology_test: short_big_five,
+    site_name: "『嘘』を見抜いて自己分析！|ビッグファイブ性格診断【BIG5-BASIC】",
+    site_url: "https://big5-basic.com/front/index.php?route=common/home",
+  },
+])
+
 extroversion = Personality.create(
   psychology_test: short_big_five,
   name: "外向性",
