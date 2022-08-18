@@ -33,6 +33,7 @@ entity "**tests**" as tests {
   referrer
   referrer_url
   thumbnail
+  how_to_answer
   created_at
   updated_at
 }
