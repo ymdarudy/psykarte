@@ -3,12 +3,12 @@
 <p>タイトルとカテゴリ検索欄（実装前）</p>
 <hr>
 
-<% @psychology_tests.each do |test| %>
-  <h2><%= link_to test.title, psychology_test_path(test) %></h2>
-  <p><strong><%= test.description %></strong></p>
+<% @psychology_tests.each do |p_test| %>
+  <h2><%= link_to p_test.title, psychology_test_path(p_test) %></h2>
+  <p><strong><%= p_test.description %></strong></p>
   <small>
     参照元:
-    <%= link_to test.referrer, test.referrer_url, target: :_blank, rel: "noopener noreferrer" %>
+    <%= link_to p_test.referrer, p_test.referrer_url, target: :_blank, rel: "noopener noreferrer" %>
   </small>
   <hr>
 <% end %>

@@ -1,8 +1,37 @@
 <h1>マイページ</h1>
 <p>名前 : <%= @user.name %></p>
 <p>メールアドレス : <%= @user.email %></p>
+<p><%= link_to "編集", edit_user_registration_path %></p>
 
 <hr>
-<p>心理テスト回答結果（仮）</p>
-<%= link_to "ショートビッグファイブ診断", answer_path(1) %>
-<p>※ここに回答結果のグラフを表示したい</p>
+<h2>心理テスト回答結果</h2>
+<% if @psychology_tests.size == 0 %>
+  <p>さっそく心理テストを回答してみましょう！</p>
+  <p><%= link_to "心理テスト一覧", psychology_tests_path %></p>
+<% else %>
+  <small>※最新結果を表示中。タイトルをクリックで詳細表示</small>
+  <% @psychology_tests.each do |p_test| %>
+    <h2><%= link_to p_test.title, answer_path(p_test.id) %></h2>
+
+    <% times = @user.answers.scoped_by_psychology_test(p_test).answered_times.sort.reverse %>
+
+    <% personality_points = [] %>
+
+    <% p_test.personalities.each do |personality| %>
+      <% points = current_user.answers.scoped_by_personality(personality).points_with_answered_times[times[0]].collect(&:point) %>
+      <% if personality.scoring_system == 1 %>
+        <% point = points.sum %>
+      <% elsif personality.scoring_system == 2 %>
+        <% point = points.sum.fdiv(points.size) %>
+      <% end %>
+      <h3><% "#{personality.name} : #{point}点" %></h3>
+      <p><% personality.description %></p>
+      <% personality_points << [personality.name, point] %>
+    <% end %>
+
+    <small><%= "回答日時：#{times[0]}" %></small>
+    <%= bar_chart personality_points, id: "bar-chart", width: "400px", height: "250px", max: 8, colors: ["#00b379"]  %>
+
+    <hr>
+  <% end %>
+<% end %>

@@ -5,4 +5,10 @@ class PsychologyTest < ApplicationRecord
   validates :title, presence: true, length: { maximum: 255 }
   validates :description, presence: true
   validates :referrer, presence: true
+
+  scope :scoped_by_user, ->(params) {
+      where(personalities: Personality.
+              where(questions: Question.
+                      where(answers: params.answers)))
+    }
 end
