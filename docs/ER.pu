@@ -25,21 +25,22 @@ entity "**users**" as users {
   updated_at
 }
 
-entity "**tests**" as tests {
+entity "**psychology_tests**" as psychology_tests {
   + id [PK]
   --
-  title '
+  title
   description
   referrer
   referrer_url
   thumbnail
+  how_to_answer
   created_at
   updated_at
 }
 
 entity "**personalities**" as personalities {
   + id [PK]
-  # test_id [FK]
+  # psychology_test_id [FK]
   --
   name
   description
@@ -52,7 +53,7 @@ entity "**questions**" as questions {
   + id [PK]
   # personality_id [FK]
   --
-  title '
+  title
   choice_min_point
   choice_max_point
   choice_min_word
@@ -74,7 +75,7 @@ entity "**answers**" as answers {
 
 entity "**supplementary_informations**" as supplementary_informations {
   + id [PK]
-  # test_id [FK]
+  # psychology_test_id [FK]
   --
   site_name
   site_url
@@ -85,7 +86,7 @@ entity "**supplementary_informations**" as supplementary_informations {
 entity "**favorites**" as favorites {
   + id [PK]
   # user_id [FK]
-  # test_id [FK]
+  # psychology_test_id [FK]
   --
   created_at
 }
@@ -100,16 +101,16 @@ entity "**categories**" as categories {
 
 entity "**tests_categories**" as tests_categories {
   + id [PK]
-  # test_id [FK]
+  # psychology_test_id [FK]
   # category_id [FK]
   --
   created_at
 }
 
-tests ||-r-|{ supplementary_informations
-tests ||--|{ personalities
-tests ||--o{ favorites
-tests ||-l-o{ tests_categories
+psychology_tests ||-r-|{ supplementary_informations
+psychology_tests ||--|{ personalities
+psychology_tests ||--o{ favorites
+psychology_tests ||-l-o{ tests_categories
 categories ||-r-o{ tests_categories
 users ||-d-o{ answers
 users ||-d-o{ favorites
