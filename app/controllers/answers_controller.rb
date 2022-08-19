@@ -22,7 +22,7 @@ class AnswersController < ApplicationController
   end
 
   def show
+    session[:psychology_test_id] ||= params[:id]
     @psychology_test = PsychologyTest.find(session[:psychology_test_id])
-    # @points = []
   end
 end
