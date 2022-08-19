@@ -12,7 +12,7 @@
       <% choice_points.reverse! if question.point_reversal? %>
       <% choice_points.each do |point| %>
         <%= f.radio_button question.id, point, {style: "transform:scale(#{((choice_points.size)/2 - point).abs/2.to_f + 1})"} %>
-        <%= label :answers_point, "" %>
+        <%= label :answer_point, "" %>
       <% end %>
       <%= question.choice_max_word %>
     </div>
