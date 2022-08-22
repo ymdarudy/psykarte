@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   resources :answers, only: %i[create show]
   mount RailsAdmin::Engine => "/admin", as: "rails_admin"
   devise_for :users, controllers: {
-            registrations: "users/registrations",
-          }
+                       registrations: "users/registrations",
+                     }
   resources :users, only: %i[show]
+  resources :favorites, only: %i[create destroy]
 end
