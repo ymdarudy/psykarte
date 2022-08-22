@@ -1,5 +1,6 @@
 <h2><%= @psychology_test.title %></h2>
 <p><strong><%= @psychology_test.description %></strong></p>
+<%= render "favorites/favorite_button" , p_test: @psychology_test%>
 <%= simple_format(@psychology_test.how_to_answer) %>
 <hr>
 
