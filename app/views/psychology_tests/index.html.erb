@@ -10,5 +10,6 @@
     参照元:
     <%= link_to p_test.referrer, p_test.referrer_url, target: :_blank, rel: "noopener noreferrer" %>
   </small>
+  <%= render "favorites/favorite_button" , p_test: p_test%>
   <hr>
 <% end %>

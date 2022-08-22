@@ -12,6 +12,7 @@
   <small>※最新結果を表示中。タイトルをクリックで詳細表示</small>
   <% @psychology_tests.each do |p_test| %>
     <h2><%= link_to p_test.title, answer_path(p_test.id) %></h2>
+    <%= render "favorites/favorite_button" , p_test: p_test%>
 
     <% times = @user.answers.scoped_by_psychology_test(p_test).answered_times.sort.reverse %>
 

@@ -1,0 +1,12 @@
+<div id="favorite_button_<%= p_test.id %>">
+  <% unless current_user.favorites.find_by(psychology_test: p_test) %>
+    <%= form_with(model: current_user.favorites.build(psychology_test: p_test), local: false)  do |f| %>
+      <%= f.hidden_field :psychology_test_id %>
+      <%= f.submit "お気に入りにする" %>
+    <% end %>
+  <% else %>
+    <%= form_with(model: current_user.favorites.find_by(psychology_test: p_test), method: :delete, local: false) do |f| %>
+      <%= f.submit "お気に入りを解除" %>
+    <% end %>
+  <% end %>
+</div>

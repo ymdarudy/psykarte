@@ -6,6 +6,7 @@
 <p>※直近の回答結果を下記に表示します。</p>
 
 <h2><%= @psychology_test.title %></h2>
+<%= render "favorites/favorite_button" , p_test: @psychology_test%>
 <h3>補足情報</h3>
 <p><%= link_to @psychology_test.referrer, @psychology_test.referrer_url, target: :_blank, rel: "noopener noreferrer" %></p>
 <% @psychology_test.supplementary_informations.each do |info|%>
