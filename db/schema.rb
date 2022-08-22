@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_17_024906) do
+ActiveRecord::Schema.define(version: 2022_08_22_054120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 2022_08_17_024906) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["user_id"], name: "index_answers_on_user_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "psychology_test_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.index ["psychology_test_id"], name: "index_favorites_on_psychology_test_id"
+    t.index ["user_id", "psychology_test_id"], name: "index_favorites_on_user_id_and_psychology_test_id", unique: true
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "personalities", force: :cascade do |t|
@@ -90,6 +99,8 @@ ActiveRecord::Schema.define(version: 2022_08_17_024906) do
 
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
+  add_foreign_key "favorites", "psychology_tests"
+  add_foreign_key "favorites", "users"
   add_foreign_key "personalities", "psychology_tests"
   add_foreign_key "questions", "personalities"
   add_foreign_key "supplementary_informations", "psychology_tests"
