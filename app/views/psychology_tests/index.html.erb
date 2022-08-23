@@ -1,6 +1,10 @@
 <h1>心理テスト一覧</h1>
 
-<p>タイトルとカテゴリ検索欄（実装前）</p>
+<%= search_form_for @test_search do |f| %>
+  <%= f.label :title_cont, "タイトル" %>
+  <%= f.search_field :title_cont %>
+  <%= f.submit %>
+<% end %>
 <hr>
 
 <% @psychology_tests.each do |p_test| %>
