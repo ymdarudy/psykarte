@@ -9,12 +9,18 @@
 admin_user = User.create(name: "山田", email: "test@email.com", password: "123123", admin: true)
 normal_user = User.create(name: "田中", email: "test2@email.com", password: "123123")
 
+Category.create([
+  { id: 1, name: "ビッグファイブ" },
+  { id: 2, name: "ユーモア" },
+])
+
 short_big_five = PsychologyTest.create(
   title: "ショートビッグファイブ診断",
   description: "ビッグファイブ（外向性・協調性・誠実性・神経症傾向・開放性）を10問で検査します。",
   how_to_answer: "以下の10個の質問に直感でお答えください。\nそれぞれに対し、0（まったくあてはまらない）〜4（完全にあてはまる）の5段階で点数をつけてください",
   referrer: "3分で自分の性格を正しく理解する「ショートビッグファイブ検査」",
   referrer_url: "https://yuchrszk.blogspot.com/2017/06/sbf.html",
+  category_ids: [1],
 )
 
 SupplementaryInformation.create([
@@ -94,6 +100,7 @@ humor_style = PsychologyTest.create(
   how_to_answer: "以下のすべての質問に1点（まったく当てはまらない）〜7点（完全に当てはまる）の範囲でお答えください",
   referrer: "自分のユーモアスタイルを判断する32問",
   referrer_url: "https://yuchrszk.blogspot.com/2017/08/32.html",
+  category_ids: [2],
 )
 
 # TODO: CSVでの実装が終わったら、削除予定

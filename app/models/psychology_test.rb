@@ -3,6 +3,8 @@ class PsychologyTest < ApplicationRecord
   has_many :supplementary_informations, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorited_users, through: :favorites, source: :user
+  has_many :tests_categories, dependent: :destroy
+  has_many :categories, through: :tests_categories
 
   validates :title, presence: true, length: { maximum: 255 }
   validates :description, presence: true
