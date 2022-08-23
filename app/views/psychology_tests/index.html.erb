@@ -5,6 +5,9 @@
 
 <% @psychology_tests.each do |p_test| %>
   <h2><%= link_to p_test.title, psychology_test_path(p_test) %></h2>
+  <% p_test.categories.each do |category| %>
+    <p><%= category.name %></p>
+  <% end %>
   <p><strong><%= p_test.description %></strong></p>
   <small>
     参照元:
