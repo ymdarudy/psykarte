@@ -15,4 +15,10 @@ class PsychologyTest < ApplicationRecord
               where(questions: Question.
                       where(answers: params.answers)))
     }
+
+  scope :scoped_by_user_unanswered, ->(params) {
+          where(personalities: Personality.
+                  where(questions: Question.
+                          where.not(answers: params.answers)))
+        }
 end
