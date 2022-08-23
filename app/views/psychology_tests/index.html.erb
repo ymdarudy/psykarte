@@ -4,13 +4,14 @@
   <div>
     <%= f.label :title_cont, "タイトル：" %>
     <%= f.search_field :title_cont %>
-    <%= f.submit %>
   </div>
   <div>
     <%= f.label :categories_id_in, "カテゴリ："%>
     <%= f.collection_check_boxes :categories_id_in, Category.all, :id ,:name %>
   </div>
+  <%= f.submit %>
 <% end %>
+<%= button_to "リセット", request.referer, method: :get if request.fullpath.include?("commit")  %>
 
 <hr>
 
