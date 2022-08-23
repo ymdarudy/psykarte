@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require "csv"
+
 admin_user = User.create(name: "山田", email: "test@email.com", password: "123123", admin: true)
 normal_user = User.create(name: "田中", email: "test2@email.com", password: "123123")
 
@@ -103,113 +105,55 @@ humor_style = PsychologyTest.create(
   category_ids: [2],
 )
 
-# TODO: CSVでの実装が終わったら、削除予定
-# short_big_five_questions = {
-#   choice_min_point: 0,
-#   choice_max_point: 4,
-#   choice_min_word: "まったくあてはまらない",
-#   choice_max_word: "完全にあてはまる",
-# }
+SupplementaryInformation.create([
+  {
+    psychology_test: humor_style,
+    site_name: "人生の幸福度を左右する４つの「ユーモアスタイル」",
+    site_url: "https://yuchrszk.blogspot.com/2017/08/humorsyles.html",
+  },
+])
 
-# Question.create([
-#   { title: "私は、初めての人に会うのが好きで、会話をするのが好きで、人と会うのを楽しめる人間だ。",
-#     personality: extroversion,
-#     **short_big_five_questions },
-#   { title: "私は、人に対して思いやりがあり、その思いやりを行動に移し、他人を差別しない人間だ。",
-#     personality: coordination,
-#     **short_big_five_questions },
-# { title: "私は、きっちりと物事をこなし、手際よく行動し、適切に物事を行おうとする人間だ。",
-#   personality: honesty },
-# { title: "私は、いつも心配事が多く、不安になりやすく、気分の浮き沈みが多い人間だ。",
-#   personality: neuroticism },
-# { title: "私は、知的な活動が得意で、創造性が高くて好奇心があり、新たなことを探求する人間だ。",
-#   personality: openness },
-# { title: "私は、恥ずかしがり屋で、物静かで、人が多いパーティなどは苦手な人間だ。",
-#   point_reversal: true,
-#   personality: extroversion },
-# { title: "私は、すぐ思ったことを口にし、冷淡な面があり、他人に同情を感じることはめったにない人間だ。",
-#   point_reversal: true,
-#   personality: coordination },
-# { title: "私は、あまり考えずに行動し、さほどきっちりは行動せず、ギリギリまで物事に手を付けない人間だ。",
-#   point_reversal: true,
-#   personality: honesty },
-# { title: "私は、たいていリラックスしており、落ち着きがあり、めったに問題について悩まない人間だ。",
-#   point_reversal: true,
-#   personality: neuroticism },
-# { title: "私は、物事を現実的に考え、伝統的な考え方を好み、めったに空想などで時間を浪費しない人間だ。",
-#   point_reversal: true,
-#   personality: openness },
-# ])
+friendly = Personality.create(
+  psychology_test: humor_style,
+  name: "親和的",
+  description: "点数が高いほど親和的ユーモア度が高い（調査平均: 男性47.3 / 女性46.0）",
+  scoring_system: 1,
+)
 
-# Question.create([
-#   { title: "私は、初めての人に会うのが好きで、会話をするのが好きで、人と会うのを楽しめる人間だ。",
-#     choice_min_point: 0,
-#     choice_max_point: 4,
-#     choice_min_word: "まったくあてはまらない",
-#     choice_max_word: "完全にあてはまる",
-#     point_reversal: false,
-#     personality: extroversion },
-#   { title: "私は、人に対して思いやりがあり、その思いやりを行動に移し、他人を差別しない人間だ。",
-#     choice_min_point: 0,
-#     choice_max_point: 4,
-#     choice_min_word: "まったくあてはまらない",
-#     choice_max_word: "完全にあてはまる",
-#     point_reversal: false,
-#     personality: coordination },
-#   { title: "私は、きっちりと物事をこなし、手際よく行動し、適切に物事を行おうとする人間だ。",
-#     choice_min_point: 0,
-#     choice_max_point: 4,
-#     choice_min_word: "まったくあてはまらない",
-#     choice_max_word: "完全にあてはまる",
-#     point_reversal: false,
-#     personality: honesty },
-#   { title: "私は、いつも心配事が多く、不安になりやすく、気分の浮き沈みが多い人間だ。",
-#     choice_min_point: 0,
-#     choice_max_point: 4,
-#     choice_min_word: "まったくあてはまらない",
-#     choice_max_word: "完全にあてはまる",
-#     point_reversal: false,
-#     personality: neuroticism },
-#   { title: "私は、知的な活動が得意で、創造性が高くて好奇心があり、新たなことを探求する人間だ。",
-#     choice_min_point: 0,
-#     choice_max_point: 4,
-#     choice_min_word: "まったくあてはまらない",
-#     choice_max_word: "完全にあてはまる",
-#     point_reversal: false,
-#     personality: openness },
-#   { title: "私は、恥ずかしがり屋で、物静かで、人が多いパーティなどは苦手な人間だ。",
-#     choice_min_point: 0,
-#     choice_max_point: 4,
-#     choice_min_word: "まったくあてはまらない",
-#     choice_max_word: "完全にあてはまる",
-#     point_reversal: true,
-#     personality: extroversion },
-#   { title: "私は、すぐ思ったことを口にし、冷淡な面があり、他人に同情を感じることはめったにない人間だ。",
-#     choice_min_point: 0,
-#     choice_max_point: 4,
-#     choice_min_word: "まったくあてはまらない",
-#     choice_max_word: "完全にあてはまる",
-#     point_reversal: true,
-#     personality: coordination },
-#   { title: "私は、あまり考えずに行動し、さほどきっちりは行動せず、ギリギリまで物事に手を付けない人間だ。",
-#     choice_min_point: 0,
-#     choice_max_point: 4,
-#     choice_min_word: "まったくあてはまらない",
-#     choice_max_word: "完全にあてはまる",
-#     point_reversal: true,
-#     personality: honesty },
-#   { title: "私は、たいていリラックスしており、落ち着きがあり、めったに問題について悩まない人間だ。",
-#     choice_min_point: 0,
-#     choice_max_point: 4,
-#     choice_min_word: "まったくあてはまらない",
-#     choice_max_word: "完全にあてはまる",
-#     point_reversal: true,
-#     personality: neuroticism },
-#   { title: "私は、物事を現実的に考え、伝統的な考え方を好み、めったに空想などで時間を浪費しない人間だ。",
-#     choice_min_point: 0,
-#     choice_max_point: 4,
-#     choice_min_word: "まったくあてはまらない",
-#     choice_max_word: "完全にあてはまる",
-#     point_reversal: true,
-#     personality: openness },
-# ])
+proud_of_himself = Personality.create(
+  psychology_test: humor_style,
+  name: "自己高揚的",
+  description: "点数が高いほど自己高揚的ユーモア度が高い（調査平均: 男性37.9 / 女性36.8）",
+  scoring_system: 1,
+)
+
+aggressive = Personality.create(
+  psychology_test: humor_style,
+  name: "攻撃的",
+  description: "点数が高いほど攻撃的ユーモア度が高い（調査平均: 男性32.3 / 女性26.3）",
+  scoring_system: 1,
+)
+
+self_deprecating = Personality.create(
+  psychology_test: humor_style,
+  name: "自己卑下的",
+  description: "点数が高いほど自己卑下的ユーモア度が高い（調査平均: 男性27.8 / 女性24.5）",
+  scoring_system: 1,
+)
+
+string_values = {
+  "friendly": friendly,
+  "proud_of_himself": proud_of_himself,
+  "aggressive": aggressive,
+  "self_deprecating": self_deprecating,
+}
+
+CSV.foreach("db/HumorStyleQuestions.csv", headers: true) do |row|
+  Question.create!(personality: string_values[row["personality"].intern],
+                   title: row["title"],
+                   choice_min_point: row["choice_min_point"],
+                   choice_max_point: row["choice_max_point"],
+                   choice_min_word: row["choice_min_word"],
+                   choice_max_word: row["choice_max_word"],
+                   point_reversal: row["point_reversal"])
+end
