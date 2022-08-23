@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_22_054120) do
+ActiveRecord::Schema.define(version: 2022_08_23_044928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,12 @@ ActiveRecord::Schema.define(version: 2022_08_22_054120) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["user_id"], name: "index_answers_on_user_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -50,9 +56,9 @@ ActiveRecord::Schema.define(version: 2022_08_22_054120) do
     t.text "referrer", null: false
     t.text "referrer_url"
     t.text "thumbnail"
+    t.text "how_to_answer", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "how_to_answer", default: "", null: false
   end
 
   create_table "questions", force: :cascade do |t|
@@ -75,6 +81,14 @@ ActiveRecord::Schema.define(version: 2022_08_22_054120) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["psychology_test_id"], name: "index_supplementary_informations_on_psychology_test_id"
+  end
+
+  create_table "tests_categories", force: :cascade do |t|
+    t.bigint "psychology_test_id", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_tests_categories_on_category_id"
+    t.index ["psychology_test_id"], name: "index_tests_categories_on_psychology_test_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -104,4 +118,6 @@ ActiveRecord::Schema.define(version: 2022_08_22_054120) do
   add_foreign_key "personalities", "psychology_tests"
   add_foreign_key "questions", "personalities"
   add_foreign_key "supplementary_informations", "psychology_tests"
+  add_foreign_key "tests_categories", "categories"
+  add_foreign_key "tests_categories", "psychology_tests"
 end
