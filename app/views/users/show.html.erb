@@ -2,7 +2,7 @@
 <% if @user.avatar? %>
   <%= image_tag @user.avatar.url, {class:"avatar", alt:"プロフィール画像"} %>
 <% else %>
-  <%= image_tag "/assets/default_avatar.jpg" ,{class:"avatar", alt:"プロフィール画像", width:"100"} %>
+  <%= image_tag asset_path("default_avatar.jpg") ,{class:"avatar", alt:"プロフィール画像", width:"100"} %>
 <% end %>
 <p>名前 : <%= @user.name %></p>
 <p>メールアドレス : <%= @user.email %></p>
