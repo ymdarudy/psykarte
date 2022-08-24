@@ -3,38 +3,38 @@ require "rails_helper"
 RSpec.describe User, type: :model do
   describe "validation" do
     example "nameは必須、かつ50文字以下" do
-      user = User.new(name: "", email: "test@example.com", password: "password")
+      user = FactoryBot.build(:user, name: "")
       expect(user).to be_invalid
 
-      user = User.new(name: "a" * 51, email: "test@example.com", password: "password")
+      user = FactoryBot.build(:user, name: "a" * 51)
       expect(user).to be_invalid
 
-      user = User.new(name: "山田", email: "test@example.com", password: "password")
+      user = FactoryBot.build(:user, name: "山田")
       expect(user).to be_valid
     end
 
     example "emailは必須、かつ所定のフォーマット" do
-      user = User.new(name: "山田", email: "", password: "password")
+      user = FactoryBot.build(:user, email: "")
       expect(user).to be_invalid
 
-      user = User.new(name: "山田", email: "test", password: "password")
+      user = FactoryBot.build(:user, email: "test")
       expect(user).to be_invalid
 
-      user = User.new(name: "山田", email: "test@example", password: "password")
+      user = FactoryBot.build(:user, email: "test@example")
       expect(user).to be_invalid
 
-      user = User.new(name: "山田", email: "test@example.com", password: "password")
+      user = FactoryBot.build(:user, email: "test@example.com")
       expect(user).to be_valid
     end
 
     example "passwordは必須、6文字以上" do
-      user = User.new(name: "山田", email: "test@example.com", password: "")
+      user = FactoryBot.build(:user, password: "")
       expect(user).to be_invalid
 
-      user = User.new(name: "山田", email: "test@example.com", password: "a" * 5)
+      user = FactoryBot.build(:user, password: "a" * 5)
       expect(user).to be_invalid
 
-      user = User.new(name: "山田", email: "test@example.com", password: "password")
+      user = FactoryBot.build(:user, password: "password")
       expect(user).to be_valid
     end
   end

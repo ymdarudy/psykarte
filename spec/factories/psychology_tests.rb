@@ -1,8 +1,7 @@
 FactoryBot.define do
   factory :psychology_test do
-    personality { "MyString" }
-    question { "MyString" }
-    answer { "MyString" }
-    category { "MyString" }
+    title { "タイトル" }
+    description { "説明" }
+    referrer { "参照元" }
   end
 end
