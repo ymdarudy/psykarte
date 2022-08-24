@@ -13,8 +13,9 @@
 <% end %>
 <%# TODO：検索ボタンの隣に並べたい。flexboxで可能か？ あと未回答ボタンの部分のスタイルタグは省きたい %>
 <button><%= link_to "未回答のみ表示", psychology_tests_path(unanswered: true), style: "text-decoration:none; color:black" %></button>
-<%= button_to "リセット", request.referer, method: :get if request.fullpath.include?("commit") || request.fullpath.include?("unanswered") %>
-<small>※未回答表示は、タイトル、カテゴリ検索とは併用不可</small>
+<button><%= link_to "お気に入りのみ表示", psychology_tests_path(favorite: true), style: "text-decoration:none; color:black" %></button>
+<%= button_to "表示リセット", request.referer, method: :get if request.fullpath.include?("=") %>
+<small>※未回答表示、お気に入り表示は、タイトル、カテゴリ検索とは併用不可</small>
 
 <hr>
 
