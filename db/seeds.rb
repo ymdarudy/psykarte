@@ -8,14 +8,33 @@
 
 require "csv"
 
+# User
 admin_user = User.create(name: "山田", email: "test@email.com", password: "123123", avatar: File.open("./app/assets/images/yamada.png"), admin: true)
-normal_user = User.create(name: "田中", email: "test2@email.com", password: "123123")
+normal_user = User.create(name: "青野", email: "test2@email.com", password: "123123")
+User.create([
+  { name: "遠藤", email: "test3@email.com", password: "123123" },
+  { name: "門脇", email: "test4@email.com", password: "123123" },
+  { name: "金子", email: "test5@email.com", password: "123123" },
+  { name: "齋藤", email: "test6@email.com", password: "123123" },
+  { name: "佐藤", email: "test7@email.com", password: "123123" },
+  { name: "鈴木", email: "test8@email.com", password: "123123" },
+  { name: "中村", email: "test9@email.com", password: "123123" },
+  { name: "西川", email: "test10@email.com", password: "123123" },
+  { name: "丸岡", email: "test11@email.com", password: "123123" },
+  { name: "森塚", email: "test12@email.com", password: "123123" },
+  { name: "吉田", email: "test13@email.com", password: "123123" },
+])
 
+# Category
 Category.create([
   { id: 1, name: "ビッグファイブ" },
   { id: 2, name: "ユーモア" },
+  { id: 3, name: "依存症" },
+  { id: 4, name: "思考法" },
+  { id: 5, name: "自己効力感" },
 ])
 
+# ビッグファイブもろもろ(設問10)
 short_big_five = PsychologyTest.create(
   title: "ショートビッグファイブ診断",
   description: "ビッグファイブ（外向性・協調性・誠実性・神経症傾向・開放性）を10問で検査します。",
@@ -96,6 +115,7 @@ openness = Personality.create(
   )
 end
 
+# ユーモアスタイルもろもろ
 humor_style = PsychologyTest.create(
   title: "ユーモアスタイル診断",
   description: "あなたのユーモアスタイル（親和的・自己高揚的・攻撃的・自己卑下的）を32問で検査します。",
@@ -148,7 +168,7 @@ string_values = {
   "self_deprecating": self_deprecating,
 }
 
-CSV.foreach("db/HumorStyleQuestions.csv", headers: true) do |row|
+CSV.foreach("db/csv/HumorStyleQuestions.csv", headers: true) do |row|
   Question.create!(personality: string_values[row["personality"].intern],
                    title: row["title"],
                    choice_min_point: row["choice_min_point"],
@@ -157,3 +177,11 @@ CSV.foreach("db/HumorStyleQuestions.csv", headers: true) do |row|
                    choice_max_word: row["choice_max_word"],
                    point_reversal: row["point_reversal"])
 end
+
+CSV.foreach("db/csv/HumorStyleAnswers.csv", headers: true) do |row|
+  Answer.create!(user_id: 1,
+                 question_id: row["question_id"],
+                 point: row["point"])
+end
+
+#スマホ依存症もろもろ
