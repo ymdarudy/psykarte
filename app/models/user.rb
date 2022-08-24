@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  mount_uploader :avatar, AvatarUploader
   has_many :answers, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorite_tests, through: :favorites, source: :psychology_test
