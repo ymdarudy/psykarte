@@ -1,0 +1,72 @@
+ja:
+  activerecord:
+    models:
+      psychology_test: 心理テスト
+      personality: 心理特性
+      question: 設問
+      answer: 回答
+      supplementary_information: 補足情報
+      favorite: お気に入り（中間）
+      category: カテゴリ
+      tests_category: テスト~カテゴリ（中間）
+    attributes:
+      psychology_test:
+        title: タイトル
+        description: 説明
+        referrer: 参照元サイト名
+        referrer_url: 参照元URL
+        thumbnail: サムネ画像
+        how_to_answer: 回答方法
+        created_at: 作成日
+        updated_at: 更新日
+        personalities: 心理特性
+        supplementary_informations: 補足情報
+        favorites: お気に入り
+        favorited_users: お気に入りユーザー
+        tests_categories: テスト~カテゴリ（中間）
+        categories: カテゴリ
+      personality:
+        psychology_test: 心理テスト
+        name: 特性名
+        description: 説明
+        scoring_system: 採点方式
+        created_at: 作成日
+        updated_at: 更新日
+        questions: 設問
+      question:
+        title: タイトル
+        choice_min_point: ポイント下限
+        choice_max_point: ポイント上限
+        choice_min_word: 下限の言葉
+        choice_max_word: 上限の言葉
+        point_reversal: ポイント反転
+        personality: 心理特性
+        created_at: 作成日
+        updated_at: 更新日
+        answers: 回答
+      answer:
+        question: 設問
+        user: ユーザー
+        point: ポイント
+        created_at: 作成日
+        updated_at: 更新日
+      supplementary_information:
+        psychology_test: 心理テスト
+        site_name: サイト名
+        site_url: サイトURL
+        created_at: 作成日
+        updated_at: 更新日
+      favorite:
+        user: ユーザー
+        psychology_test: 心理テスト
+        created_at: 作成日
+      category:
+        name: 名前
+        created_at: 作成日
+        updated_at: 更新日
+        tests_categories: テスト~カテゴリ
+        tests: 心理テスト
+      tests_category:
+        psychology_test: 心理テスト
+        category: カテゴリ
+        created_at: 作成日

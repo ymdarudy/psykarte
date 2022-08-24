@@ -2,9 +2,11 @@
 
 class Users::PasswordsController < Devise::PasswordsController
   # GET /resource/password/new
-  # def new
-  #   super
-  # end
+  # 実装するまではホームへリダイレクトさせる
+  def new
+    redirect_to root_path
+    # super
+  end
 
   # POST /resource/password
   # def create
