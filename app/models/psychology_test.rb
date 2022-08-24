@@ -10,15 +10,15 @@ class PsychologyTest < ApplicationRecord
   validates :description, presence: true
   validates :referrer, presence: true
 
-  scope :scoped_by_user, ->(params) {
+  scope :scoped_by_user_answered, ->(user) {
       where(personalities: Personality.
               where(questions: Question.
-                      where(answers: params.answers)))
+                      where(answers: user.answers)))
     }
 
-  scope :scoped_by_user_unanswered, ->(params) {
+  scope :scoped_by_user_unanswered, ->(user) {
           where(personalities: Personality.
                   where(questions: Question.
-                          where.not(answers: params.answers)))
+                          where.not(answers: user.answers)))
         }
 end
