@@ -8,7 +8,7 @@
 
 require "csv"
 
-admin_user = User.create(name: "山田", email: "test@email.com", password: "123123", admin: true)
+admin_user = User.create(name: "山田", email: "test@email.com", password: "123123", avatar: File.open("./app/assets/images/yamada.png"), admin: true)
 normal_user = User.create(name: "田中", email: "test2@email.com", password: "123123")
 
 Category.create([

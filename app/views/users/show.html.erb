@@ -1,4 +1,9 @@
 <h1>マイページ</h1>
+<% if @user.avatar? %>
+  <%= image_tag @user.avatar.url, {class:"avatar", alt:"プロフィール画像"} %>
+<% else %>
+  <%= image_tag "/assets/default_avatar.jpg" ,{class:"avatar", alt:"プロフィール画像", width:"100"} %>
+<% end %>
 <p>名前 : <%= @user.name %></p>
 <p>メールアドレス : <%= @user.email %></p>
 <p><%= link_to "編集", edit_user_registration_path %></p>
