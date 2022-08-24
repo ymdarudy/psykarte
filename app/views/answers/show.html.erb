@@ -28,7 +28,9 @@
   <% personality_points << [personality.name, point] %>
 <% end %>
 
-<%= bar_chart personality_points, id: "bar-chart", width: "800px", height: "500px", max: 8, colors: ["#00b379"]  %>
+<%# TODO:max部分はPsychologyTestに最高点のカラムを追加して表示する必要ありかと思ったがいったん計算でいけそう %>
+<%  chart_max = Question.scoped_by_test(@psychology_test).sum(:choice_max_point) / @psychology_test.personalities.count(:id) %>
+<%= bar_chart personality_points, id: "bar-chart", width: "800px", height: "500px", max: chart_max, colors: ["#00b379"]  %>
 
 <hr>
 <h3>回答詳細</h3>
@@ -41,10 +43,11 @@
     <% question_point = current_user.answers.where(question: question).points_with_answered_times[times[0]].first.point %>
     <% choice_points = (question.choice_min_point..question.choice_max_point).to_a %>
     <% choice_points.reverse! if question.point_reversal? %>
+    <% midpoint = (question.choice_min_point + question.choice_max_point)/2.to_f %>
     <% choice_points.each do |point| %>
       <% question_point == point ? check = true : check = false %>
       <%= radio_button :answer, question.id, point, {
-          style: "transform:scale(#{((choice_points.size)/2 - point).abs/2.to_f + 1})",
+          style: "transform:scale(#{((midpoint - point).abs/2.to_f) + 1})",
           checked: check,
           } %>
       <%= label :answer_point, "" %>

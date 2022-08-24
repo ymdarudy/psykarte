@@ -11,8 +11,10 @@
       <%= question.choice_min_word %>
       <% choice_points = (question.choice_min_point..question.choice_max_point).to_a %>
       <% choice_points.reverse! if question.point_reversal? %>
+      <% midpoint = (question.choice_min_point + question.choice_max_point)/2.to_f %>
       <% choice_points.each do |point| %>
-        <%= f.radio_button question.id, point, {style: "transform:scale(#{((choice_points.size)/2 - point).abs/2.to_f + 1})"} %>
+        <%# TODO: widthなどでサイズ調整が必要そう %>
+        <%= f.radio_button question.id, point, {style: "transform:scale(#{((midpoint - point).abs/2.to_f) + 1.0})"} %>
         <%= label :answer_point, "" %>
       <% end %>
       <%= question.choice_max_word %>
