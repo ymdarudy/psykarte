@@ -10,4 +10,17 @@ class User < ApplicationRecord
          :trackable
 
   validates :name, presence: true, length: { maximum: 50 }
+
+  scope :guest, -> {
+          find_or_create_by!(name: "ゲスト", email: "guest@example.com") do |user|
+            user.password = SecureRandom.urlsafe_base64
+          end
+        }
+
+  scope :guest_admin, -> {
+          find_or_create_by!(name: "ゲスト管理者", email: "guestadmin@example.com") do |user|
+            user.password = SecureRandom.urlsafe_base64
+            user.admin = true
+          end
+        }
 end
