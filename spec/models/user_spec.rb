@@ -38,4 +38,19 @@ RSpec.describe User, type: :model do
       expect(user).to be_valid
     end
   end
+
+  describe "モデルのメソッド" do
+    example "guestメソッドで所定のユーザーが作成できる" do
+      user = User.guest
+      expect(user.name).to eq("ゲスト")
+      expect(user.email).to eq("guest@example.com")
+      expect(user.admin).to eq(false)
+    end
+    example "guest_adminメソッドで所定のユーザーが作成できる" do
+      user = User.guest_admin
+      expect(user.name).to eq("ゲスト管理者")
+      expect(user.email).to eq("guestadmin@example.com")
+      expect(user.admin).to eq(true)
+    end
+  end
 end
