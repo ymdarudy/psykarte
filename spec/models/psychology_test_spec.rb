@@ -43,17 +43,17 @@ RSpec.describe PsychologyTest, type: :model do
     let!(:answer2) { FactoryBot.create(:answer, question: question2, user: user2) }
 
     example "scoped_by_user_answeredメソッドで特定のユーザーが回答済みの心理テストを抽出できる" do
-      p_tests = PsychologyTest.scoped_by_user_answered(user)
-      expect(p_tests.count).to eq(1)
-      expect(p_tests.first).to eq(psychology_test)
-      expect(p_tests.first).not_to eq(psychology_test2)
+      scoped_tests = PsychologyTest.scoped_by_user_answered(user)
+      expect(scoped_tests.count).to eq(1)
+      expect(scoped_tests.first).to eq(psychology_test)
+      expect(scoped_tests.first).not_to eq(psychology_test2)
     end
 
     example "scoped_by_user_unansweredメソッドで特定のユーザーが未回答の心理テストを抽出できる" do
-      p_tests = PsychologyTest.scoped_by_user_unanswered(user)
-      expect(p_tests.count).to eq(1)
-      expect(p_tests.first).to eq(psychology_test2)
-      expect(p_tests.first).not_to eq(psychology_test)
+      scoped_tests = PsychologyTest.scoped_by_user_unanswered(user)
+      expect(scoped_tests.count).to eq(1)
+      expect(scoped_tests.first).to eq(psychology_test2)
+      expect(scoped_tests.first).not_to eq(psychology_test)
     end
   end
 end

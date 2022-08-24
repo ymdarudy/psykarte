@@ -5,5 +5,6 @@ FactoryBot.define do
     choice_max_point { 4 }
     choice_min_word { "まったく当てはまらない" }
     choice_max_word { "完全に当てはまる" }
+    personality { FactoryBot.create(:personality) }
   end
 end

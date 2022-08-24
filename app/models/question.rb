@@ -9,7 +9,7 @@ class Question < ApplicationRecord
   validates :choice_max_word, presence: true, length: { maximum: 30 }
   validates :point_reversal, inclusion: [true, false]
 
-  scope :scoped_by_test, ->(params) {
-      where(personality: Personality.where(psychology_test: params))
+  scope :scoped_by_test, ->(p_test) {
+      where(personality: Personality.where(psychology_test: p_test))
     }
 end
