@@ -28,8 +28,9 @@
   <% personality_points << [personality.name, point] %>
 <% end %>
 
-<%# TODO:max部分はpersonalityに最高点のカラムを追加して表示する必要あり %>
-<%= bar_chart personality_points, id: "bar-chart", width: "800px", height: "500px", max: 8, colors: ["#00b379"]  %>
+<%# TODO:max部分はPsychologyTestに最高点のカラムを追加して表示する必要ありかと思ったがいったん計算でいけそう %>
+<%  chart_max = Question.scoped_by_test(@psychology_test).sum(:choice_max_point) / @psychology_test.personalities.count(:id) %>
+<%= bar_chart personality_points, id: "bar-chart", width: "800px", height: "500px", max: chart_max, colors: ["#00b379"]  %>
 
 <hr>
 <h3>回答詳細</h3>
