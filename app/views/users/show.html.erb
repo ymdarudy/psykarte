@@ -37,7 +37,7 @@
 
     <small><%= "回答日時：#{times[0]}" %></small>
     <%  chart_max = Question.scoped_by_test(p_test).sum(:choice_max_point) / p_test.personalities.count(:id) %>
-    <%= bar_chart personality_points, id: "bar-chart", width: "400px", height: "250px", max: chart_max, colors: ["#00b379"]  %>
+    <%= bar_chart personality_points, id: "bar-chart-#{p_test.id}", width: "400px", height: "250px", max: chart_max, colors: ["#00b379"]  %>
 
     <hr>
   <% end %>
