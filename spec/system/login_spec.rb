@@ -2,7 +2,7 @@ require "rails_helper"
 require "system/helper"
 include RSpecHelper
 
-RSpec.describe "新規登録・ログイン関連機能", type: :system do
+RSpec.describe "新規登録・ログイン機能", type: :system do
   describe "新規登録関連" do
     it "新規登録できる" do
       visit new_user_registration_path
