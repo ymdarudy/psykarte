@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_24_021553) do
+ActiveRecord::Schema.define(version: 2022_08_25_024843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,8 +76,8 @@ ActiveRecord::Schema.define(version: 2022_08_24_021553) do
 
   create_table "supplementary_informations", force: :cascade do |t|
     t.bigint "psychology_test_id", null: false
-    t.string "site_name"
-    t.string "site_url"
+    t.string "site_name", null: false
+    t.string "site_url", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["psychology_test_id"], name: "index_supplementary_informations_on_psychology_test_id"
