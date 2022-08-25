@@ -10,6 +10,6 @@ class UsersController < ApplicationController
 
   def admin_user?
     return if current_user.admin? || User.find(params[:id]) == current_user
-    redirect_to root_path, notice: "他のユーザーページにはアクセスできません"
+    redirect_to root_path, notice: "他のユーザーページにはアクセスできません。"
   end
 end

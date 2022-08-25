@@ -13,8 +13,11 @@ class AnswersController < ApplicationController
   end
 
   def show
+    @user = current_user
+    @user = User.find(params[:user_id]) if params[:user_id]
     @psychology_test = PsychologyTest.find(params[:id])
-    return unless current_user.answers.scoped_by_psychology_test(@psychology_test).size == 0
-    redirect_to user_path(current_user), notice: "その心理テストはまだ一度も回答していません。"
+
+    return unless @user.answers.scoped_by_psychology_test(@psychology_test).size == 0
+    redirect_to user_path(@user), notice: "その心理テストはまだ一度も回答していません。"
   end
 end

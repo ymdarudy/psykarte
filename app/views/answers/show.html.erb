@@ -1,7 +1,7 @@
 <h1>回答結果</h1>
 <small>
   回答日時:
-  <%= times = current_user.answers.scoped_by_psychology_test(@psychology_test).answered_times.sort.reverse %>
+  <%= times = @user.answers.scoped_by_psychology_test(@psychology_test).answered_times.sort.reverse %>
 </small>
 <p>※直近の回答結果を下記に表示します。</p>
 
@@ -17,7 +17,7 @@
 <% personality_points = [] %>
 
 <% @psychology_test.personalities.each do |personality| %>
-  <% points = current_user.answers.scoped_by_personality(personality).points_with_answered_times[times[0]].collect(&:point) %>
+  <% points = @user.answers.scoped_by_personality(personality).points_with_answered_times[times[0]].collect(&:point) %>
   <% if personality.scoring_system == 1 %>
     <% point = points.sum %>
   <% elsif personality.scoring_system == 2 %>
@@ -40,7 +40,7 @@
   <p><%= "#{i+1}. #{question.title}" %></p>
   <div>
     <%= question.choice_min_word %>
-    <% question_point = current_user.answers.where(question: question).points_with_answered_times[times[0]].first.point %>
+    <% question_point = @user.answers.where(question: question).points_with_answered_times[times[0]].first.point %>
     <% choice_points = (question.choice_min_point..question.choice_max_point).to_a %>
     <% choice_points.reverse! if question.point_reversal? %>
     <% midpoint = (question.choice_min_point + question.choice_max_point)/2.to_f %>
