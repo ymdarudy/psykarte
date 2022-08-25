@@ -13,7 +13,7 @@ RSpec.describe User, type: :model do
       expect(user).to be_valid
     end
 
-    example "emailは必須、かつ所定のフォーマット" do
+    example "emailは必須、かつ所定のフォーマット、かつユニーク" do
       user = FactoryBot.build(:user, email: "")
       expect(user).to be_invalid
 
@@ -25,6 +25,10 @@ RSpec.describe User, type: :model do
 
       user = FactoryBot.build(:user, email: "test@example.com")
       expect(user).to be_valid
+
+      user = FactoryBot.create(:user, email: "test@example.com")
+      user2 = FactoryBot.build(:user, email: "Test@example.com")
+      expect(user2).to be_invalid
     end
 
     example "passwordは必須、6文字以上" do
