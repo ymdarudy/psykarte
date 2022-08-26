@@ -115,7 +115,6 @@ RSpec.describe "CRUD機能", type: :system do
       it "お気に入りの心理テストだけ表示できる" do
         first(".favorite_button").click_on "お気に入り登録"
         click_link "お気に入りのみ表示"
-        save_and_open_page
         expect(page).to have_content "心理テスト1"
         expect(page).not_to have_content "心理テスト2"
       end
