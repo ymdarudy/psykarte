@@ -16,14 +16,14 @@
         <div>あなたの名前:<%= current_user.name %></div>
         <%= link_to "管理画面", rails_admin_path if current_user.admin?%>
         <%= link_to "マイページ", user_path(current_user) %>
-        <%= link_to '心理テスト一覧', psychology_tests_path %>
-        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+        <%= link_to "心理テスト一覧", psychology_tests_path, id: "psychology_tests" %>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
       <% else %>
         <%= link_to "トップ", root_path %>
-        <%= link_to '新規登録', new_user_registration_path %>
-        <%= link_to 'ログイン', new_user_session_path %>
-        <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post %>
-        <%= link_to 'ゲスト管理者ログイン', users_guest_admin_sign_in_path, method: :post %>
+        <%= link_to "新規登録", new_user_registration_path %>
+        <%= link_to "ログイン", new_user_session_path %>
+        <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post %>
+        <%= link_to "ゲスト管理者ログイン", users_guest_admin_sign_in_path, method: :post %>
       <% end %>
     </header>
 
