@@ -6,7 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -14,7 +14,7 @@
     <header>
       <% if user_signed_in? %>
         <div>あなたの名前:<%= current_user.name %></div>
-        <%= link_to "管理画面", rails_admin_path if current_user.admin?%>
+        <%= link_to "管理画面", rails_admin_path, class: "btn" if current_user.admin?%>
         <%= link_to "マイページ", user_path(current_user) %>
         <%= link_to "心理テスト一覧", psychology_tests_path, id: "psychology_tests" %>
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
