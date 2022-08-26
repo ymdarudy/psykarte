@@ -8,13 +8,14 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
     <header>
       <% if user_signed_in? %>
         <div>あなたの名前:<%= current_user.name %></div>
-        <%= link_to "管理画面", rails_admin_path, class: "btn" if current_user.admin?%>
+        <%= link_to "管理画面", rails_admin_path, class: "btn btn-primary" if current_user.admin? %>
         <%= link_to "マイページ", user_path(current_user) %>
         <%= link_to "心理テスト一覧", psychology_tests_path, id: "psychology_tests" %>
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
@@ -25,6 +26,8 @@
         <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post %>
         <%= link_to "ゲスト管理者ログイン", users_guest_admin_sign_in_path, method: :post %>
       <% end %>
+      <%# TODO:アイコンテスト 使い終わったら削除 %>
+      <%= icon("pencil", width: 30) %>
     </header>
 
     <div>
