@@ -6,6 +6,12 @@ module ApplicationHelper
     if options[:class].present?
       svg["class"] += " " + options[:class]
     end
+    if options[:width].present?
+      svg["width"] = options[:width].to_s
+    end
+    if options[:height].present?
+      svg["height"] = options[:height].to_s
+    end
     doc.to_html.html_safe
   end
 end
