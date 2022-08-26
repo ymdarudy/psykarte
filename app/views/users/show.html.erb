@@ -16,7 +16,7 @@
 <% else %>
   <small>※最新結果を表示中。タイトルをクリックで詳細表示</small>
   <% @psychology_tests.each do |p_test| %>
-    <h2><%= link_to p_test.title, answer_path(p_test.id) %></h2>
+    <h2><%= link_to p_test.title, answer_path(p_test.id, user_id: @user.id) %></h2>
     <%= render "favorites/favorite_button" , p_test: p_test%>
 
     <% times = @user.answers.scoped_by_psychology_test(p_test).answered_times.sort.reverse %>
@@ -24,7 +24,7 @@
     <% personality_points = [] %>
 
     <% p_test.personalities.each do |personality| %>
-      <% points = current_user.answers.scoped_by_personality(personality).points_with_answered_times[times[0]].collect(&:point) %>
+      <% points = @user.answers.scoped_by_personality(personality).points_with_answered_times[times[0]].collect(&:point) %>
       <% if personality.scoring_system == 1 %>
         <% point = points.sum %>
       <% elsif personality.scoring_system == 2 %>
@@ -37,7 +37,7 @@
 
     <small><%= "回答日時：#{times[0]}" %></small>
     <%  chart_max = Question.scoped_by_test(p_test).sum(:choice_max_point) / p_test.personalities.count(:id) %>
-    <%= bar_chart personality_points, id: "bar-chart", width: "400px", height: "250px", max: chart_max, colors: ["#00b379"]  %>
+    <%= bar_chart personality_points, id: "bar-chart-#{p_test.id}", width: "400px", height: "250px", max: chart_max, colors: ["#00b379"]  %>
 
     <hr>
   <% end %>
