@@ -27,6 +27,7 @@
   <p><strong><%= p_test.description %></strong></p>
   <small>
     参照元:
+    <%= icon("link") %>
     <%= link_to p_test.referrer, p_test.referrer_url, target: :_blank, rel: "noopener noreferrer" %>
   </small>
   <%= render "favorites/favorite_button" , p_test: p_test%>
