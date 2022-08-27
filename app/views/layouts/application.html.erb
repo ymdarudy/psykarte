@@ -20,11 +20,11 @@
           <h2 class="">
             Psykarte
           </h2>
-          <% if user_signed_in? %>
-            <small class="ps-4 text-muted"><%= current_user.name %>
-              <small>としてログイン中</small>
-            </small>
-          <% end %>
+        <% end %>
+        <% if user_signed_in? %>
+          <h7 class="text-muted"><%= current_user.name %>
+            <small>としてログイン中</small>
+          </h7>
         <% end %>
 
         <button class="navbar-toggler" type="button"
