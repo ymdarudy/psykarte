@@ -7,10 +7,10 @@ module ApplicationHelper
       svg["class"] += " " + options[:class]
     end
     if options[:width].present?
-      svg["width"] = options[:width].to_s
+      svg["width"] = options[:width]
     end
     if options[:height].present?
-      svg["height"] = options[:height].to_s
+      svg["height"] = options[:height]
     end
     doc.to_html.html_safe
   end
