@@ -6,6 +6,18 @@
   color: red;
 }
 
+body {
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 48px;
+}
+
+footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
 .alert {
   padding: 0;
   margin-bottom: 0;
