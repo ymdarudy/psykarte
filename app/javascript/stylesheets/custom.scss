@@ -1,0 +1,22 @@
+// BIアイコンテスト 終わったら削除
+.bi-pencil {
+  font-size: 1rem;
+  color: red;
+}
+
+body {
+  min-height: 100vh;
+  position: relative;
+  padding-top: 80px;
+  padding-bottom: 48px;
+}
+
+footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+hr.question-border {
+  border-top: 1px dashed #bbb;
+}
