@@ -34,11 +34,14 @@
     <% end %>
   </div>
 
-  <%# TODO:max部分はPsychologyTestに最高点のカラムを追加して表示する必要ありかと思ったがいったん計算でいけそう %>
-  <%  chart_max = Question.scoped_by_test(@psychology_test).sum(:choice_max_point) / @psychology_test.personalities.count(:id) %>
+  <% chart_max = Question.scoped_by_test(@psychology_test).sum(:choice_max_point) / @psychology_test.personalities.count(:id) %>
+  <% if @psychology_test.personalities.first.scoring_system == 2 %>
+    <% chart_max = chart_max / @psychology_test.personalities.first.questions.count %>
+  <% end %>
   <div class="answer-chart col-md-6">
     <%= bar_chart personality_points, max: chart_max, height: "400px", colors: ["#00b379"] %>
   </div>
+
 </div>
 
 <hr>
