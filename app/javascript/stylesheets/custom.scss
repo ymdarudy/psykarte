@@ -7,7 +7,6 @@
 body {
   min-height: 100vh;
   position: relative;
-  padding-top: 80px;
   padding-bottom: 48px;
 }
 
@@ -27,4 +26,45 @@ hr.question-border {
 
 .actions {
   margin: 20px 0;
+}
+
+.form-control {
+  width: 80%;
+}
+
+.input-group > .form-control {
+  flex: 0 1 auto;
+  width: 60%;
+}
+
+.favorite-button {
+  border-style: none;
+  background: none;
+}
+
+.star-fill {
+  fill: yellow;
+  stroke: rgb(195, 195, 195);
+}
+
+.star {
+  width: 30px;
+  height: 30px;
+  color: rgb(195, 195, 195);
+}
+
+.star-search {
+  width: 0.875rem;
+  height: 0.875rem;
+  fill: yellow;
+  stroke: rgb(195, 195, 195);
+}
+
+.category-search {
+  background: rgb(234, 236, 239);
+  border-style: solid;
+  border-radius: 0.2rem;
+  border-color: rgb(207, 212, 217);
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
 }

@@ -15,3 +15,5 @@ import "../stylesheets/custom.scss";
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();
+
+import "./header_padding.js";
