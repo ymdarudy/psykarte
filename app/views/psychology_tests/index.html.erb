@@ -11,47 +11,44 @@
     <%= f.collection_check_boxes(:categories_id_in, Category.all, :id ,:name) do |b| %>
       <%= b.check_box class: "btn-check" %>
       <%= b.label(class: "btn btn-sm btn-outline-secondary") { b.text } %>
-      <%#= b.check_box class: "btn-check" do %>
-        <%#= b.check_box %>
-        <%# end %>
-      <% end %>
-    </div>
-    <%= f.submit class: "btn btn-sm btn-outline-primary px-3" %>
-  <% end %>
-  <p class="mb-2"><small>※タイトルは「部分一致検索」。カテゴリ検索は「OR検索」。タイトルとカテゴリは「AND検索」</small></p>
+    <% end %>
+  </div>
+  <%= f.submit class: "btn btn-sm btn-outline-primary px-3" %>
+<% end %>
+<p class="mb-2"><small>※タイトルは「部分一致検索」。カテゴリ検索は「OR検索」。タイトルとカテゴリは「AND検索」</small></p>
 
-  <%= link_to "未回答のみ表示", psychology_tests_path(unanswered: true), class: "btn btn-sm btn-outline-primary px-3" %>
-  <%= link_to psychology_tests_path(favorite: true), class: "btn btn-sm btn-outline-primary px-3" do %>
-    <%= icon("star-fill", class: "star-search") %>お気に入りのみ表示
-  <% end %>
-  <%= link_to "表示リセット", psychology_tests_path, method: :get, class: "btn btn-sm btn-outline-danger px-3" if request.fullpath.include?("=") %>
-  <p><small>※未回答表示、お気に入り表示は、タイトル、カテゴリ検索とは併用不可</small></p>
+<%= link_to "未回答のみ表示", psychology_tests_path(unanswered: true), class: "btn btn-sm btn-outline-primary px-3" %>
+<%= link_to psychology_tests_path(favorite: true), class: "btn btn-sm btn-outline-primary px-3" do %>
+  <%= icon("star-fill", class: "star-search me-1") %>お気に入りのみ表示
+<% end %>
+<%= link_to "表示リセット", psychology_tests_path, method: :get, class: "btn btn-sm btn-outline-danger px-3" if request.fullpath.include?("=") %>
+<p><small>※未回答表示、お気に入り表示は、タイトル、カテゴリ検索とは併用不可</small></p>
 
+<hr>
+
+<% unless @psychology_tests.present? %>
+  <% if request.fullpath.include?("unanswered") %>
+    <h2>全てのテストを回答済みです！</h2>
+  <% elsif request.fullpath.include?("favorite") %>
+    <h2>お気に入りのテストがありません！</h2>
+  <% else %>
+    <h2>検索条件に一致するテストはありません！</h2>
+  <% end %>
+<% end %>
+
+<% @psychology_tests.each do |p_test| %>
+  <h2 class="hstack">
+    <%= link_to p_test.title, psychology_test_path(p_test) %>
+    <%= render "favorites/favorite_button" , p_test: p_test%>
+  </h2>
+  <% p_test.categories.each do |category| %>
+    <%= tag.p category.name, class: "badge rounded-pill bg-secondary" %>
+  <% end %>
+  <p><strong><%= p_test.description %></strong></p>
+  <small>
+    参照元:
+    <%= icon("link") %>
+    <%= link_to p_test.referrer, p_test.referrer_url, target: :_blank, rel: "noopener noreferrer" %>
+  </small>
   <hr>
-
-  <% unless @psychology_tests.present? %>
-    <% if request.fullpath.include?("unanswered") %>
-      <h2>全てのテストを回答済みです！</h2>
-    <% elsif request.fullpath.include?("favorite") %>
-      <h2>お気に入りのテストがありません！</h2>
-    <% else %>
-      <h2>検索条件に一致するテストはありません！</h2>
-    <% end %>
-  <% end %>
-
-  <% @psychology_tests.each do |p_test| %>
-    <h2 class="hstack">
-      <%= link_to p_test.title, psychology_test_path(p_test) %>
-      <%= render "favorites/favorite_button" , p_test: p_test%>
-    </h2>
-    <% p_test.categories.each do |category| %>
-      <%= tag.p category.name, class: "badge rounded-pill bg-secondary" %>
-    <% end %>
-    <p><strong><%= p_test.description %></strong></p>
-    <small>
-      参照元:
-      <%= icon("link") %>
-      <%= link_to p_test.referrer, p_test.referrer_url, target: :_blank, rel: "noopener noreferrer" %>
-    </small>
-    <hr>
-  <% end %>
+<% end %>
