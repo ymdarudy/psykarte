@@ -16,8 +16,9 @@
         <%# end %>
       <% end %>
     </div>
-    <%= f.submit class: "btn btn-sm btn-outline-primary px-3 mb-1" %>
+    <%= f.submit class: "btn btn-sm btn-outline-primary px-3" %>
   <% end %>
+  <p class="mb-2"><small>※タイトルは「部分一致検索」。カテゴリ検索は「OR検索」。タイトルとカテゴリは「AND検索」</small></p>
 
   <%= link_to "未回答のみ表示", psychology_tests_path(unanswered: true), class: "btn btn-sm btn-outline-primary px-3" %>
   <%= link_to psychology_tests_path(favorite: true), class: "btn btn-sm btn-outline-primary px-3" do %>
@@ -27,6 +28,16 @@
   <p><small>※未回答表示、お気に入り表示は、タイトル、カテゴリ検索とは併用不可</small></p>
 
   <hr>
+
+  <% unless @psychology_tests.present? %>
+    <% if request.fullpath.include?("unanswered") %>
+      <h2>全てのテストを回答済みです！</h2>
+    <% elsif request.fullpath.include?("favorite") %>
+      <h2>お気に入りのテストがありません！</h2>
+    <% else %>
+      <h2>検索条件に一致するテストはありません！</h2>
+    <% end %>
+  <% end %>
 
   <% @psychology_tests.each do |p_test| %>
     <h2 class="hstack">
