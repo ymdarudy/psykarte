@@ -8,7 +8,12 @@ import Turbolinks from "turbolinks";
 import * as ActiveStorage from "@rails/activestorage";
 import "channels";
 import "chartkick/chart.js";
+import "bootstrap";
+import "../stylesheets/application.scss";
+import "../stylesheets/custom.scss";
 
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();
+
+import "./header_padding.js";

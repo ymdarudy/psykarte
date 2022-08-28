@@ -6,10 +6,10 @@ RSpec.describe "新規登録・ログイン機能", type: :system do
   describe "新規登録関連" do
     it "新規登録できる" do
       visit new_user_registration_path
-      fill_in :user_name, with: "山田"
-      fill_in :user_email, with: "systemspec@example.com"
-      fill_in :user_password, with: "123123"
-      fill_in :user_password_confirmation, with: "123123"
+      fill_in "user[name]", with: "山田"
+      fill_in "user[email]", with: "systemspec@example.com"
+      fill_in "user[password]", with: "123123"
+      fill_in "user[password_confirmation]", with: "123123"
       click_on "commit"
       expect(page).to have_content "アカウント登録が完了しました。"
     end

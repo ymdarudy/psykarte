@@ -1,23 +1,30 @@
 <h1>マイページ</h1>
-<% if @user.avatar? %>
-  <%= image_tag @user.avatar.url, {class:"avatar", alt:"プロフィール画像"} %>
-<% else %>
-  <%= image_tag asset_path("default_avatar.jpg") ,{class:"avatar", alt:"プロフィール画像", width:"100"} %>
-<% end %>
-<p>名前 : <%= @user.name %></p>
-<p>メールアドレス : <%= @user.email %></p>
-<p><%= link_to "編集", edit_user_registration_path %></p>
+<div class="hstack">
+  <% if @user.avatar? %>
+    <%= image_tag @user.avatar.url, {class:"avatar me-3", alt:"プロフィール画像"} %>
+  <% else %>
+    <%= image_tag asset_path("default_avatar.jpg") ,{class:"avatar me-3", alt:"プロフィール画像", width:"100"} %>
+  <% end %>
+  <div>
+    <p>名前 : <%= @user.name %></p>
+    <p>メールアドレス : <%= @user.email %></p>
+    <p><%= link_to "編集", edit_user_registration_path, class: "btn btn-outline-primary" if current_user == @user %></p>
+  </div>
+</div>
 
 <hr>
 <h2>心理テスト回答結果</h2>
 <% if @psychology_tests.size == 0 %>
-  <p>さっそく心理テストを回答してみましょう！</p>
-  <p><%= link_to "心理テスト一覧", psychology_tests_path %></p>
+  <p>まだテストを一問も回答していません</p>
+  <p>さっそく下記から心理テストを回答してみましょう！</p>
+  <p><%= link_to "心理テスト一覧", psychology_tests_path, class: "btn btn-lg btn-primary"%></p>
 <% else %>
   <small>※最新結果を表示中。タイトルをクリックで詳細表示</small>
   <% @psychology_tests.each do |p_test| %>
-    <h2><%= link_to p_test.title, answer_path(p_test.id, user_id: @user.id) %></h2>
-    <%= render "favorites/favorite_button" , p_test: p_test%>
+    <h2 class="hstack">
+      <%= link_to p_test.title, answer_path(p_test.id, user_id: @user.id) %>
+      <%= render "favorites/favorite_button" , p_test: p_test%>
+    </h2>
 
     <% times = @user.answers.scoped_by_psychology_test(p_test).answered_times.sort.reverse %>
 
@@ -37,7 +44,10 @@
 
     <small><%= "回答日時：#{times[0]}" %></small>
     <%  chart_max = Question.scoped_by_test(p_test).sum(:choice_max_point) / p_test.personalities.count(:id) %>
-    <%= bar_chart personality_points, id: "bar-chart-#{p_test.id}", width: "400px", height: "250px", max: chart_max, colors: ["#00b379"]  %>
+    <% if p_test.personalities.first.scoring_system == 2 %>
+      <% chart_max = chart_max / p_test.personalities.first.questions.count %>
+    <% end %>
+    <%= bar_chart personality_points, id: "bar-chart-#{p_test.id}", width: "80%", max: chart_max, colors: ["#00b379"]  %>
 
     <hr>
   <% end %>

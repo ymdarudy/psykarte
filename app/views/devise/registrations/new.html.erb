@@ -3,36 +3,40 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+  <div class="form-floating">
+    <%= f.text_field :name, autofocus: true, autocomplete: "name",
+    class:"form-control", id: "floatingName", placeholder: "名前" %>
+    <label for="floatingName">名前</label>
   </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autocomplete: "email" %>
+  <div class="form-floating">
+    <%= f.email_field :email, autocomplete: "email",
+    class:"form-control", id: "floatingEmail", placeholder: "Eメール" %>
+    <label for="floatingEmail">Eメール</label>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-      <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+  <div class="form-floating">
+    <%= f.password_field :password, autocomplete: "new-password",
+    class:"form-control", id: "floatingPassword", placeholder: "パスワード" %>
+    <label for="floatingPassword">パスワード</label>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="form-floating">
+    <%= f.password_field :password_confirmation, autocomplete: "new-password",
+    class:"form-control", id: "floatingPasswordConfirmation", placeholder: "パスワード（確認用）" %>
+    <label for="floatingPasswordConfirmation">パスワード（確認用）</label>
   </div>
+  <% if @minimum_password_length %>
+    <em>※パスワードは6字以上</em>
+  <% end %><br />
 
-  <div class="field">
-    <%= f.label :avatar %><small>※任意</small><br />
-    <%= f.file_field :avatar %>
+  <div class="file-field">
+    <%= f.label :avatar %><em><small> ※任意</small></em>
+    <%= f.file_field :avatar ,class: "form-control", id: "formFile" %>
   </div>
 
   <div class="actions">
-    <%= f.submit t('.sign_up') %>
+    <%= f.submit t('.sign_up'), class: "btn btn-outline-primary px-3" %>
   </div>
 <% end %>
 

@@ -2,11 +2,15 @@
   <% unless current_user.favorites.find_by(psychology_test: p_test) %>
     <%= form_with(model: current_user.favorites.build(psychology_test: p_test), local: false)  do |f| %>
       <%= f.hidden_field :psychology_test_id %>
-      <%= f.submit "お気に入り登録" %>
+      <%= button_tag(type: "submit", class: "favorite-button fav-on ms-3 d-flex align-items-center") do %>
+        <%= icon("star", class: "star") %>
+      <% end %>
     <% end %>
   <% else %>
     <%= form_with(model: current_user.favorites.find_by(psychology_test: p_test), method: :delete, local: false) do |f| %>
-      <%= f.submit "お気に入り解除" %>
+      <%= button_tag(type: "submit", class: "favorite-button fav-off ms-3 d-flex align-items-center") do %>
+        <%= icon("star-fill", class: "star star-fill") %>
+      <% end %>
     <% end %>
   <% end %>
 </div>
