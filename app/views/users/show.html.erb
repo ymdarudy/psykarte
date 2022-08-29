@@ -35,7 +35,7 @@
       <% if personality.scoring_system == 1 %>
         <% point = points.sum %>
       <% elsif personality.scoring_system == 2 %>
-        <% point = points.sum.fdiv(points.size) %>
+        <% point = points.sum.fdiv(points.size).round(1) %>
       <% end %>
       <h3><% "#{personality.name} : #{point}点" %></h3>
       <p><% personality.description %></p>
@@ -45,7 +45,7 @@
     <small><%= "回答日時：#{times[0]}" %></small>
     <%  chart_max = Question.scoped_by_test(p_test).sum(:choice_max_point) / p_test.personalities.count(:id) %>
     <% if p_test.personalities.first.scoring_system == 2 %>
-      <% chart_max = chart_max / p_test.personalities.first.questions.count %>
+      <% chart_max = Question.scoped_by_test(p_test).sum(:choice_max_point) / Question.scoped_by_test(p_test).count %>
     <% end %>
     <%= bar_chart personality_points, id: "bar-chart-#{p_test.id}", width: "80%", max: chart_max, colors: ["#00b379"]  %>
 
