@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
+  prepend_before_action :verify_signed_out_user, only: :destroy
+  prepend_before_action(only: [:create, :destroy]) { request.env["devise.skip_timeout"] = true }
+
   def guest_sign_in
     user = User.guest
     sign_in user
@@ -26,9 +29,13 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+    # super
+    signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
+    set_flash_message! :notice, :signed_out if signed_out
+    yield if block_given?
+    redirect_to home_top_path
+  end
 
   # protected
 
