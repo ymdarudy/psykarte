@@ -38,3 +38,37 @@ CSV.foreach("db/csv/PPRQuestions.csv", headers: true) do |row|
                    choice_max_word: row["choice_max_word"],
                    point_reversal: row["point_reversal"])
 end
+
+#スマホ依存症
+smartphone = PsychologyTest.create(
+  title: "スマホ依存度診断",
+  description: "スマホへの依存度を20問で検査します。",
+  how_to_answer: "それぞれの質問ごとに、1（まったく当てはまらない）〜7（完全に当てはまる）で選択してください。",
+  referrer: "重度のスマホ依存症（ノモフォビア）をチェックする20の質問",
+  referrer_url: "https://yuchrszk.blogspot.com/2015/09/20.html",
+  category_ids: [3],
+)
+
+no_mobile_phone_phobia = Personality.create(
+  psychology_test: smartphone,
+  name: "スマホ依存度",
+  description: "点数が高いほど、スマホ依存度が高い。\n0〜27点：問題なし\n28〜55点：スマホ依存予備軍\n56〜83点：軽症\n84〜111点：重症\n112〜140点：完全な依存症",
+  scoring_system: 1,
+)
+
+string_values = {
+  "no_mobile_phone_phobia": no_mobile_phone_phobia,
+}
+
+CSV.foreach("db/csv/SmartPhoneQuestions.csv", headers: true) do |row|
+  Question.create!(personality: string_values[row["personality"].intern],
+                   title: row["title"],
+                   choice_min_point: row["choice_min_point"],
+                   choice_max_point: row["choice_max_point"],
+                   choice_min_word: row["choice_min_word"],
+                   choice_max_word: row["choice_max_word"],
+                   point_reversal: row["point_reversal"])
+end
+
+#クリティカルシンキング
+#自己効力感

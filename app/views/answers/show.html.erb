@@ -29,7 +29,7 @@
         <% point = points.sum.fdiv(points.size).round(1) %>
       <% end %>
       <h3><%= "#{personality.name} : #{point}点" %></h3>
-      <p><%= personality.description %></p>
+      <%= simple_format(personality.description) %>
       <% personality_points << [personality.name, point] %>
     <% end %>
   </div>
