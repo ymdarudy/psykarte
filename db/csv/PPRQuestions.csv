@@ -1,0 +1,17 @@
+personality,title,choice_min_point,choice_max_point,choice_min_word,choice_max_word,point_reversal
+responsiveness,◯◯は本当に私の話を聞いてくれる。,0,5,まったく当てはまらない,完全に当てはまる,FALSE
+responsiveness,◯◯は私の考えていることや感じていることに興味があるようだ。,0,5,まったく当てはまらない,完全に当てはまる,FALSE
+responsiveness,◯◯は思いやりがある。,0,5,まったく当てはまらない,完全に当てはまる,FALSE
+responsiveness,◯◯は私に気持ちを理解しようとしている。,0,5,まったく当てはまらない,完全に当てはまる,FALSE
+responsiveness,◯◯は私のニーズに気を配ってくれる。,0,5,まったく当てはまらない,完全に当てはまる,FALSE
+responsiveness,◯◯は私のニーズに応えてくれる。,0,5,まったく当てはまらない,完全に当てはまる,FALSE
+responsiveness,◯◯は私の懸念を真剣に受け止めてくれる。,0,5,まったく当てはまらない,完全に当てはまる,FALSE
+responsiveness,◯◯は私の意見をよく聞いてくれる。,0,5,まったく当てはまらない,完全に当てはまる,FALSE
+responsiveness,◯◯は私の感情や懸念を受け入れてくれる。,0,5,まったく当てはまらない,完全に当てはまる,FALSE
+insensitivity,◯◯は私の言い分を無視する。,0,5,まったく当てはまらない,完全に当てはまる,FALSE
+insensitivity,◯◯は私の懸念を簡単に処理しようとする。,0,5,まったく当てはまらない,完全に当てはまる,FALSE
+insensitivity,◯◯は私に重要なことを無視している。,0,5,まったく当てはまらない,完全に当てはまる,FALSE
+insensitivity,◯◯は私の望みやニーズを本当には理解していない。,0,5,まったく当てはまらない,完全に当てはまる,FALSE
+insensitivity,◯◯は私の心配を真剣に受け止めていない。,0,5,まったく当てはまらない,完全に当てはまる,FALSE
+insensitivity,◯◯は私が言っていることを本当に聞いていないことが多い。,0,5,まったく当てはまらない,完全に当てはまる,FALSE
+insensitivity,何か心配事やストレスを感じているときに、それを◯◯に話しても事態は悪化するだけだ。,0,5,まったく当てはまらない,完全に当てはまる,FALSE
