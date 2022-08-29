@@ -1,0 +1,19 @@
+<div class="text-center">
+  <h2 class="my-3">心理テストを通して、自分を知ろう</h2>
+  <h4>人それぞれ「心の在り方」は違います。</h4>
+  <h4>心理テストを回答し、結果を振り返ることで、</h4>
+  <h4>自分の心を知り、成長につなげましょう！</h4>
+  <small class="mt-3">※Psykarte ＝ PsychologyTest（心理テスト）のKarte（カルテ）</small>
+
+  <div class="justify-content-center d-flex mt-3">
+    <div class="border p-3 mx-3 shadow-sm">
+      <p class="mb-1">初めての方</p>
+      <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary" %>
+    </div>
+
+    <div class="border p-3 mx-3 shadow-sm">
+      <p class="mb-1">アカウントをお持ちの方</p>
+      <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>

@@ -27,7 +27,7 @@ RSpec.describe "新規登録・ログイン機能", type: :system do
       log_in(user)
       click_on "ログアウト"
       expect(page).to have_content "ログアウトしました。"
-      expect(current_path).to eq root_path
+      expect(current_path).to eq home_top_path
     end
 
     it "ゲストログインできる" do
