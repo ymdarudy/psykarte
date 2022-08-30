@@ -1,6 +1,6 @@
-<h2 class="hstack">
+<h2 class="hstack fw-bold">
   <%= @psychology_test.title %>
-  <%= render "favorites/favorite_button" , p_test: @psychology_test%>
+  <%= render "favorites/favorite_button" , p_test: @psychology_test %>
 </h2>
 <p><strong><%= @psychology_test.description %></strong></p>
 <%= simple_format(@psychology_test.how_to_answer) %>

@@ -1,17 +1,17 @@
-<h2><%= t('.title', resource: resource.model_name.human) %></h2>
+<h2 class="fw-bold"><%= t('.title', resource: resource.model_name.human) %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="form-floating">
     <%= f.text_field :name, autocomplete: "name",
-    class:"form-control", id: "floatingName", placeholder: "名前" %>
+    class: "form-control", id: "floatingName", placeholder: "名前" %>
     <label for="floatingName">名前</label>
   </div>
 
   <div class="form-floating mb-3">
     <%= f.email_field :email, autocomplete: "email",
-    class:"form-control", id: "floatingEmail", placeholder: "Eメール" %>
+    class: "form-control", id: "floatingEmail", placeholder: "Eメール" %>
     <label for="floatingEmail">Eメール</label>
   </div>
 
@@ -22,13 +22,13 @@
 
   <div class="form-floating">
     <%= f.password_field :password, autocomplete: "new-password",
-    class:"form-control", id: "floatingPassword", placeholder: "パスワード" %>
+    class: "form-control", id: "floatingPassword", placeholder: "パスワード" %>
     <label for="floatingPassword">パスワード</label>
   </div>
 
   <div class="form-floating">
     <%= f.password_field :password_confirmation, autocomplete: "new-password",
-    class:"form-control", id: "floatingPasswordConfirmation", placeholder: "パスワード（確認用）" %>
+    class: "form-control", id: "floatingPasswordConfirmation", placeholder: "パスワード（確認用）" %>
     <label for="floatingPasswordConfirmation">パスワード（確認用）</label>
   </div>
   <% if @minimum_password_length %>
@@ -38,7 +38,7 @@
   <%= f.label :current_password, class: "mt-3" %> <i>(<%= t('.we_need_your_current_password_to_confirm_your_changes') %>)</i><br />
   <div class="form-floating">
     <%= f.password_field :current_password, autocomplete: "current-password",
-    class:"form-control", id: "floatingCurrentPassword", placeholder: "現在のパスワード" %>
+    class: "form-control", id: "floatingCurrentPassword", placeholder: "現在のパスワード" %>
     <label for="floatingCurrentPassword">現在のパスワード</label>
   </div>
 
