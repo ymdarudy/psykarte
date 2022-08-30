@@ -6,9 +6,9 @@
 <%= simple_format(@psychology_test.how_to_answer) %>
 <hr>
 
-<%= form_with(model: @answer, method: :post) do |f| %>
+<%= form_with(model: @answer) do |f| %>
   <div class="container">
-    <% Question.where(personality: Personality.where(psychology_test: @psychology_test)).order(:id).each_with_index do |question, i| %>
+    <% Question.scoped_by_test(@psychology_test).order(:id).each_with_index do |question, i| %>
       <p class="col-md-8"><%= "#{i+1}. #{question.title}" %></p>
       <div class="container">
         <div class="row">
@@ -18,8 +18,7 @@
           <% midpoint = (question.choice_min_point + question.choice_max_point)/2.to_f %>
           <div class="col-6 col-md-4 hstack d-flex justify-content-between">
             <% choice_points.each do |point| %>
-              <%= f.radio_button question.id, point, {style: "transform:scale(#{((midpoint - point).abs/2.to_f) + 1.0})"} %>
-              <%= label :answer_point, "" %>
+              <%= f.radio_button question.id, point, { style: "transform:scale(#{((midpoint - point).abs/2.to_f) + 1.0})" } %>
             <% end %>
           </div>
           <div class="col-3 col-md-2"><%= question.choice_max_word %></div>

@@ -55,7 +55,7 @@
 <hr>
 
 <div class="container">
-  <% Question.where(personality: Personality.where(psychology_test: @psychology_test)).order(:id).each_with_index do |question, i| %>
+  <% Question.scoped_by_test(@psychology_test).order(:id).each_with_index do |question, i| %>
     <p class="col-md-8"><%= "#{i+1}. #{question.title}" %></p>
     <div class="container">
       <div class="row">
@@ -71,7 +71,6 @@
           style: "transform:scale(#{((midpoint - point).abs/2.to_f) + 1})",
           checked: check,
           } %>
-            <%= label :answer_point, "" %>
           <% end %>
         </div>
         <div class="col-3 col-md-2"><%= question.choice_max_word %></div>

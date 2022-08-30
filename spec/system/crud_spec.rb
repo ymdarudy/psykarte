@@ -6,8 +6,8 @@ RSpec.describe "CRUD機能", type: :system do
   let!(:user) { FactoryBot.create(:user) }
   let!(:category1) { FactoryBot.create(:category, name: "カテゴリ1", id: 1) }
   let!(:category2) { FactoryBot.create(:category, name: "カテゴリ2", id: 2) }
-  let!(:psychology_test1) { FactoryBot.create(:psychology_test, title: "心理テスト1", category_ids: [1]) }
-  let!(:psychology_test2) { FactoryBot.create(:psychology_test, title: "心理テスト2", category_ids: [2]) }
+  let!(:psychology_test1) { FactoryBot.create(:psychology_test, title: "心理テスト1", description: "説明1", referrer: "参照元1", category_ids: [1]) }
+  let!(:psychology_test2) { FactoryBot.create(:psychology_test, title: "心理テスト2", description: "説明2", referrer: "参照元2", category_ids: [2]) }
   let!(:personality1) { FactoryBot.create(:personality, psychology_test: psychology_test1) }
   let!(:personality2) { FactoryBot.create(:personality, psychology_test: psychology_test2) }
   let!(:question1_1) { FactoryBot.create(:question, personality: personality1, title: "設問1-1") }
@@ -75,7 +75,21 @@ RSpec.describe "CRUD機能", type: :system do
       end
 
       it "タイトルであいまい検索ができる" do
-        fill_in "q_title_cont", with: "テスト1"
+        fill_in "q_title_or_description_or_referrer_cont", with: "テスト1"
+        click_on "検索"
+        expect(page).to have_content "心理テスト1"
+        expect(page).not_to have_content "心理テスト2"
+      end
+
+      it "説明であいまい検索ができる" do
+        fill_in "q_title_or_description_or_referrer_cont", with: "明1"
+        click_on "検索"
+        expect(page).to have_content "心理テスト1"
+        expect(page).not_to have_content "心理テスト2"
+      end
+
+      it "参照元であいまい検索ができる" do
+        fill_in "q_title_or_description_or_referrer_cont", with: "照元1"
         click_on "検索"
         expect(page).to have_content "心理テスト1"
         expect(page).not_to have_content "心理テスト2"
@@ -93,7 +107,7 @@ RSpec.describe "CRUD機能", type: :system do
       end
 
       it "タイトル&カテゴリで検索ができる(タイトルとカテゴリはAND、カテゴリ部分だけはOR" do
-        fill_in "q_title_cont", with: "テスト1"
+        fill_in "q_title_or_description_or_referrer_cont", with: "テスト1"
         check "q_categories_id_in_2"
         click_on "検索"
         expect(page).not_to have_content "心理テスト1"
@@ -120,7 +134,7 @@ RSpec.describe "CRUD機能", type: :system do
       end
 
       it "検索後に表示リセットボタンで全ての心理テストを表示できる" do
-        fill_in "q_title_cont", with: "テスト1"
+        fill_in "q_title_or_description_or_referrer_cont", with: "テスト1"
         click_on "検索"
         expect(page).to have_content "心理テスト1"
         expect(page).not_to have_content "心理テスト2"
