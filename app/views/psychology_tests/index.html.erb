@@ -2,8 +2,8 @@
 
 <%= search_form_for @test_search do |f| %>
   <div class="input-group input-group-sm mb-2">
-    <%= f.label :title_cont, "タイトル" ,class: "input-group-text" %>
-    <%= f.search_field :title_cont, class: "form-control form-control-sm" %>
+    <%= f.label :title_or_description_or_referrer_cont, "タイトル or 説明 or 参照元" ,class: "input-group-text" %>
+    <%= f.search_field :title_or_description_or_referrer_cont, class: "form-control form-control-sm" %>
   </div>
 
   <div class="mb-2">
@@ -15,7 +15,7 @@
   </div>
   <%= f.submit class: "btn btn-sm btn-outline-primary px-3" %>
 <% end %>
-<p class="mb-2"><small>※タイトルは「部分一致検索」。カテゴリ検索は「OR検索」。タイトルとカテゴリは「AND検索」</small></p>
+<p class="mb-2"><small>※キーワード検索は「部分一致検索」。カテゴリ検索は「OR検索」。タイトルとカテゴリは「AND検索」</small></p>
 
 <%= link_to "未回答のみ表示", psychology_tests_path(unanswered: true), class: "btn btn-sm btn-outline-primary px-3" %>
 <%= link_to psychology_tests_path(favorite: true), class: "btn btn-sm btn-outline-primary px-3" do %>
