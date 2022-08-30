@@ -71,4 +71,47 @@ CSV.foreach("db/csv/SmartPhoneQuestions.csv", headers: true) do |row|
 end
 
 #クリティカルシンキング
+critical_thinking = PsychologyTest.create(
+  title: "クリティカル・シンキング診断",
+  description: "クリティカル・シンキングレベルを7問で検査します。",
+  how_to_answer: "それぞれの質問ごとに、0（当てはまらない）,1（ときどき当てはまる）2（いつも当てはまる）で選択してください。\n※真ん中のチェックが「ときどき当てはまる」です。",
+  referrer: "あなたの「クリティカル・シンキング」レベルを計る7つのチェック項目",
+  referrer_url: "https://yuchrszk.blogspot.com/2020/11/7.html",
+  category_ids: [4],
+)
+
+SupplementaryInformation.create([
+  {
+    psychology_test: critical_thinking,
+    site_name: "【超図解】クリティカル・シンキングとは",
+    site_url: "https://mba.globis.ac.jp/knowledge/detail-21114.html",
+  },
+  {
+    psychology_test: critical_thinking,
+    site_name: "【超思考法】天才を超える凡人になるための思考トレーニング【前編】",
+    site_url: "https://daigoblog.jp/super-thinking/",
+  },
+])
+
+c_t_level = Personality.create(
+  psychology_test: critical_thinking,
+  name: "クリティカル・シンキングレベル",
+  description: "点数が高いほど、クリティカル・シンキングが出来ている。（最低0点、最高14点）\nクリティカル・シンキングが高いと...\n・バイアスにとらわれずにものごとを考えられる。\n・いろんな視点からものごとを考えられる。\n・いろんな証拠を集めて検討できる。",
+  scoring_system: 1,
+)
+
+string_values = {
+  "c_t_level": c_t_level,
+}
+
+CSV.foreach("db/csv/CriticalThinkingQuestions.csv", headers: true) do |row|
+  Question.create!(personality: string_values[row["personality"].intern],
+                   title: row["title"],
+                   choice_min_point: row["choice_min_point"],
+                   choice_max_point: row["choice_max_point"],
+                   choice_min_word: row["choice_min_word"],
+                   choice_max_word: row["choice_max_word"],
+                   point_reversal: row["point_reversal"])
+end
+
 #自己効力感
