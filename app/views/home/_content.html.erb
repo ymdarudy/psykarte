@@ -5,15 +5,19 @@
   <h4>自分の心を知り、成長につなげましょう！</h4>
   <small class="mt-3">※Psykarte ＝ PsychologyTest（心理テスト）のKarte（カルテ）</small>
 
-  <div class="justify-content-center d-flex mt-3">
-    <div class="border p-3 mx-3 shadow-sm">
-      <p class="mb-1">初めての方</p>
-      <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary" %>
+  <div class="row row-cols-1 row-cols-md-2 justify-content-center d-flex mt-3">
+    <div class="card mx-3 mb-1 shadow-sm" style="width: 16rem">
+      <div class="card-body p-2">
+        <p class="card-title mb-3">初めてご利用の方</p>
+        <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary px-3" %>
+      </div>
     </div>
 
-    <div class="border p-3 mx-3 shadow-sm">
-      <p class="mb-1">アカウントをお持ちの方</p>
-      <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary" %>
+    <div class="card mx-3 mb-1 shadow-sm" style="width: 16rem">
+      <div class="card-body p-2">
+        <p class="card-title mb-3">アカウントをお持ちの方</p>
+        <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary px-3" %>
+      </div>
     </div>
   </div>
 </div>
