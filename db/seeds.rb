@@ -34,7 +34,7 @@ Category.create([
   { id: 5, name: "自己効力感" },
 ])
 
-# ビッグファイブもろもろ(設問10)
+# ビッグファイブ
 short_big_five = PsychologyTest.create(
   title: "ショートビッグファイブ診断",
   description: "ビッグファイブ（外向性・協調性・誠実性・神経症傾向・開放性）を10問で検査します。",
@@ -115,7 +115,7 @@ openness = Personality.create(
   )
 end
 
-# ユーモアスタイルもろもろ
+# ユーモアスタイル
 humor_style = PsychologyTest.create(
   title: "ユーモアスタイル診断",
   description: "あなたのユーモアスタイル（親和的・自己高揚的・攻撃的・自己卑下的）を32問で検査します。",

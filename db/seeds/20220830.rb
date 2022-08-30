@@ -74,7 +74,7 @@ end
 critical_thinking = PsychologyTest.create(
   title: "クリティカル・シンキング診断",
   description: "クリティカル・シンキングレベルを7問で検査します。",
-  how_to_answer: "それぞれの質問ごとに、0（当てはまらない）,1（ときどき当てはまる）2（いつも当てはまる）で選択してください。\n※真ん中のチェックが「ときどき当てはまる」です。",
+  how_to_answer: "それぞれの質問ごとに、0（当てはまらない）、1（ときどき当てはまる）、2（いつも当てはまる）を選択してください。\n※真ん中のチェックが「ときどき当てはまる」です。",
   referrer: "あなたの「クリティカル・シンキング」レベルを計る7つのチェック項目",
   referrer_url: "https://yuchrszk.blogspot.com/2020/11/7.html",
   category_ids: [4],
@@ -115,3 +115,32 @@ CSV.foreach("db/csv/CriticalThinkingQuestions.csv", headers: true) do |row|
 end
 
 #自己効力感
+self_efficacy = PsychologyTest.create(
+  title: "自己効力感診断",
+  description: "健康レベル判定用の自己効力感を8問で検査します。",
+  how_to_answer: "それぞれの質問ごとに、0（まったく達成できそうもない）〜5（完全に達成できる）を選択してください。\n※「適度な運動」は、早歩きからランニングぐらいの負荷の運動を意味しています。",
+  referrer: "健康になるために欠かせない「自己効力感」を判断する8つの質問",
+  referrer_url: "https://yuchrszk.blogspot.com/2018/07/8.html",
+  category_ids: [5],
+)
+
+s_e_level = Personality.create(
+  psychology_test: self_efficacy,
+  name: "自己効力感（健康レベル用）",
+  description: "点数が高いほど、自己効力感（ゴール達成への自信）が高く、健康になりやすい。（最低0点、最高5点）\n自己効力感が高いと...\n・勉強と仕事のパフォーマンスが上がる！\n・人生の満足度も上がる！\n・家族の関係も良くなる！",
+  scoring_system: 2,
+)
+
+string_values = {
+  "s_e_level": s_e_level,
+}
+
+CSV.foreach("db/csv/SelfEfficacyQuestions.csv", headers: true) do |row|
+  Question.create!(personality: string_values[row["personality"].intern],
+                   title: row["title"],
+                   choice_min_point: row["choice_min_point"],
+                   choice_max_point: row["choice_max_point"],
+                   choice_min_word: row["choice_min_word"],
+                   choice_max_word: row["choice_max_word"],
+                   point_reversal: row["point_reversal"])
+end
