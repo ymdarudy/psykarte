@@ -1,29 +1,29 @@
-<h2><%= t('.sign_up') %></h2>
+<h2 class="fw-bold"><%= t('.sign_up') %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="form-floating">
     <%= f.text_field :name, autofocus: true, autocomplete: "name",
-    class:"form-control", id: "floatingName", placeholder: "名前" %>
+    class: "form-control", id: "floatingName", placeholder: "名前" %>
     <label for="floatingName">名前</label>
   </div>
 
   <div class="form-floating">
     <%= f.email_field :email, autocomplete: "email",
-    class:"form-control", id: "floatingEmail", placeholder: "Eメール" %>
+    class: "form-control", id: "floatingEmail", placeholder: "Eメール" %>
     <label for="floatingEmail">Eメール</label>
   </div>
 
   <div class="form-floating">
     <%= f.password_field :password, autocomplete: "new-password",
-    class:"form-control", id: "floatingPassword", placeholder: "パスワード" %>
+    class: "form-control", id: "floatingPassword", placeholder: "パスワード" %>
     <label for="floatingPassword">パスワード</label>
   </div>
 
   <div class="form-floating">
     <%= f.password_field :password_confirmation, autocomplete: "new-password",
-    class:"form-control", id: "floatingPasswordConfirmation", placeholder: "パスワード（確認用）" %>
+    class: "form-control", id: "floatingPasswordConfirmation", placeholder: "パスワード（確認用）" %>
     <label for="floatingPasswordConfirmation">パスワード（確認用）</label>
   </div>
   <% if @minimum_password_length %>

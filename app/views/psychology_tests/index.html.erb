@@ -1,4 +1,4 @@
-<h1>心理テスト一覧</h1>
+<h2 class="fw-bold">心理テスト一覧</h2>
 
 <%= search_form_for @test_search do |f| %>
   <div class="input-group input-group-sm mb-2">
@@ -28,19 +28,19 @@
 
 <% unless @psychology_tests.present? %>
   <% if request.fullpath.include?("unanswered") %>
-    <h2>全てのテストを回答済みです！</h2>
+    <h3>全てのテストを回答済みです！</h3>
   <% elsif request.fullpath.include?("favorite") %>
-    <h2>お気に入りのテストがありません！</h2>
+    <h3>お気に入りのテストがありません！</h3>
   <% else %>
-    <h2>検索条件に一致するテストはありません！</h2>
+    <h3>検索条件に一致するテストはありません！</h3>
   <% end %>
 <% end %>
 
 <% @psychology_tests.each do |p_test| %>
-  <h2 class="hstack">
+  <h3 class="hstack">
     <%= link_to p_test.title, psychology_test_path(p_test) %>
-    <%= render "favorites/favorite_button" , p_test: p_test%>
-  </h2>
+    <%= render "favorites/favorite_button" , p_test: p_test %>
+  </h3>
   <% p_test.categories.each do |category| %>
     <%= tag.p category.name, class: "badge rounded-pill bg-secondary" %>
   <% end %>
