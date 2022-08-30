@@ -34,11 +34,11 @@ Category.create([
   { id: 5, name: "自己効力感" },
 ])
 
-# ビッグファイブもろもろ(設問10)
+# ビッグファイブ
 short_big_five = PsychologyTest.create(
   title: "ショートビッグファイブ診断",
   description: "ビッグファイブ（外向性・協調性・誠実性・神経症傾向・開放性）を10問で検査します。",
-  how_to_answer: "以下の10個の質問に直感でお答えください。\nそれぞれに対し、0（まったくあてはまらない）〜4（完全にあてはまる）の5段階で点数をつけてください",
+  how_to_answer: "以下の10個の質問に直感でお答えください。\nそれぞれに対し、0（まったくあてはまらない）〜4（完全にあてはまる）の5段階で点数をつけてください。",
   referrer: "3分で自分の性格を正しく理解する「ショートビッグファイブ検査」",
   referrer_url: "https://yuchrszk.blogspot.com/2017/06/sbf.html",
   category_ids: [1],
@@ -115,11 +115,11 @@ openness = Personality.create(
   )
 end
 
-# ユーモアスタイルもろもろ
+# ユーモアスタイル
 humor_style = PsychologyTest.create(
   title: "ユーモアスタイル診断",
   description: "あなたのユーモアスタイル（親和的・自己高揚的・攻撃的・自己卑下的）を32問で検査します。",
-  how_to_answer: "以下のすべての質問に1点（まったく当てはまらない）〜7点（完全に当てはまる）の範囲でお答えください",
+  how_to_answer: "以下のすべての質問に1点（まったく当てはまらない）〜7点（完全に当てはまる）の範囲でお答えください。",
   referrer: "自分のユーモアスタイルを判断する32問",
   referrer_url: "https://yuchrszk.blogspot.com/2017/08/32.html",
   category_ids: [2],
@@ -183,5 +183,3 @@ CSV.foreach("db/csv/HumorStyleAnswers.csv", headers: true) do |row|
                  question_id: row["question_id"],
                  point: row["point"])
 end
-
-#スマホ依存症もろもろ
