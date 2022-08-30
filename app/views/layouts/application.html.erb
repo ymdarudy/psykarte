@@ -17,12 +17,12 @@
       <div class="container-fluid">
         <%= link_to root_path, class: "navbar-brand hstack" do  %>
           <%= icon("clipboard2-heart-fill", class: "heart-fill", width: "28", height: "28") %>
-          <h2 class="">
+          <h2 class="fw-bold">
             Psykarte
           </h2>
         <% end %>
         <% if user_signed_in? %>
-          <h8 class="text-muted"><%= current_user.name %>
+          <h8 class="text-light"><%= current_user.name %>
             <small>でログイン中</small>
           </h8>
         <% end %>
@@ -33,7 +33,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
+          <ul class="navbar-nav ms-auto fw-bold">
             <% if user_signed_in? %>
               <li class="nav-item">
                 <%= link_to "管理画面", rails_admin_path,
