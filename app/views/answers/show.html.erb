@@ -11,9 +11,15 @@
 <h3>補足情報</h3>
 <small>※結果とあわせてご確認ください</small>
 
-<p class="mt-2"><%= link_to @psychology_test.referrer, @psychology_test.referrer_url, target: :_blank, rel: "noopener noreferrer" %></p>
+<p class="mt-2">
+  <%= icon("link") %>
+  <%= link_to @psychology_test.referrer, @psychology_test.referrer_url, target: :_blank, rel: "noopener noreferrer" %>
+</p>
 <% @psychology_test.supplementary_informations.each do |info|%>
-  <p><%= link_to info.site_name, info.site_url, target: :_blank, rel: "noopener noreferrer" %></p>
+  <p>
+    <%= icon("link") %>
+    <%= link_to info.site_name, info.site_url, target: :_blank, rel: "noopener noreferrer" %>
+  </p>
 <% end %>
 <hr>
 
@@ -74,20 +80,3 @@
     <hr class="question-border">
   <% end %>
 </div>
-
-<script>
-  // TODO:完成後削除、canvasの自動サイズ調整思案中
-    // $(document).on("turbolinks:load", function () {
-    //   var p_height = $(".personality").height();
-    //   $("canvas").css("height", p_height * 0.9);
-    //   $("canvas").css("width", p_height * 1.8);
-    //   console.log(p_height);
-    // });
-
-    // $(window).resize(function () {
-    //   var p_height = $(".personality").height();
-    //   $("canvas").css("height", p_height * 0.9);
-    //   $("canvas").css("width", p_height * 1.8);
-    //   console.log(p_height);
-    // });
-</script>
