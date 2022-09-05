@@ -37,28 +37,28 @@
 
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto fw-bold">
+            <li class="nav-item">
+              <%= link_to "トップ", root_path,
+              class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "管理画面", rails_admin_path,
+                class: "nav-link" if current_user&.admin? %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "心理テスト一覧", psychology_tests_path,
+                class: "nav-link", id: "psychology_tests" %>
+            </li>
             <% if user_signed_in? %>
-              <li class="nav-item">
-                <%= link_to "管理画面", rails_admin_path,
-                class: "nav-link" if current_user.admin? %>
-              </li>
               <li class="nav-item">
                 <%= link_to "マイページ", user_path(current_user),
                 class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "心理テスト一覧", psychology_tests_path,
-                class: "nav-link", id: "psychology_tests" %>
               </li>
               <li class="nav-item">
                 <%= link_to "ログアウト", destroy_user_session_path,
                 class: "nav-link", method: :delete %>
               </li>
             <% else %>
-              <li class="nav-item">
-                <%= link_to "トップ", root_path,
-              class: "nav-link" %>
-              </li>
               <li class="nav-item">
                 <%= link_to "新規登録", new_user_registration_path,
               class: "nav-link" %>
