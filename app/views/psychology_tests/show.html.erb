@@ -1,6 +1,6 @@
 <h2 class="hstack fw-bold">
   <%= @psychology_test.title %>
-  <%= render "favorites/favorite_button" , p_test: @psychology_test %>
+  <%= render "favorites/favorite_button" , p_test: @psychology_test if current_user.present? %>
 </h2>
 <p><strong><%= @psychology_test.description %></strong></p>
 <%= simple_format(@psychology_test.how_to_answer) %>
@@ -28,5 +28,5 @@
     <% end %>
   </div>
   <%= f.hidden_field :psychology_test_id, value: @psychology_test.id %>
-  <%= f.submit class: "btn btn-lg btn-outline-primary px-3" %>
+  <%= f.submit class: "btn btn-lg btn-outline-primary px-3" if current_user.present? %>
 <% end %>

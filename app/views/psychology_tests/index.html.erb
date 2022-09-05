@@ -39,7 +39,7 @@
 <% @psychology_tests.each do |p_test| %>
   <h3 class="hstack">
     <%= link_to p_test.title, psychology_test_path(p_test) %>
-    <%= render "favorites/favorite_button" , p_test: p_test %>
+    <%= render "favorites/favorite_button" , p_test: p_test if current_user.present? %>
   </h3>
   <% p_test.categories.each do |category| %>
     <%= tag.p category.name, class: "badge rounded-pill bg-secondary" %>
