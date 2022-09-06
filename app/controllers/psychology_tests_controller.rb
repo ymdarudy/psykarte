@@ -15,11 +15,12 @@ class PsychologyTestsController < ApplicationController
     elsif params[:favorite] && current_user.nil?
       flash.now[:notice] = "ログインすると利用できます。"
     end
+    @psychology_tests = @psychology_tests.includes(:categories)
   end
 
   def show
     @psychology_test = PsychologyTest.find(params[:id])
     @answer = Answer.new
-    flash.now[:notice] = "ログインすると回答できます。"
+    flash.now[:notice] = "ログインすると回答できます。" unless current_user.present?
   end
 end
