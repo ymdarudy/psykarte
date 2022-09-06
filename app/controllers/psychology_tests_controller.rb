@@ -21,6 +21,6 @@ class PsychologyTestsController < ApplicationController
   def show
     @psychology_test = PsychologyTest.find(params[:id])
     @answer = Answer.new
-    flash.now[:notice] = "ログインすると回答できます。"
+    flash.now[:notice] = "ログインすると回答できます。" unless current_user.present?
   end
 end
