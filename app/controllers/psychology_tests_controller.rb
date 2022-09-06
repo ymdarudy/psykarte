@@ -15,6 +15,7 @@ class PsychologyTestsController < ApplicationController
     elsif params[:favorite] && current_user.nil?
       flash.now[:notice] = "ログインすると利用できます。"
     end
+    @psychology_tests = @psychology_tests.includes(:categories)
   end
 
   def show
