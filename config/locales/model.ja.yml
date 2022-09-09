@@ -49,7 +49,6 @@ ja:
         user: ユーザー
         point: ポイント
         created_at: 作成日
-        updated_at: 更新日
       supplementary_information:
         psychology_test: 心理テスト
         site_name: サイト名
