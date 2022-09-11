@@ -3,29 +3,29 @@ require "rails_helper"
 RSpec.describe Answer, type: :model do
   describe "validation" do
     example "pointは必須、かつ整数のみ" do
-      answer = FactoryBot.build(:answer, point: "")
+      answer = build(:answer, point: "")
       expect(answer).to be_invalid
 
-      answer = FactoryBot.build(:answer, point: 1.5)
+      answer = build(:answer, point: 1.5)
       expect(answer).to be_invalid
 
-      answer = FactoryBot.build(:answer, point: 2)
+      answer = build(:answer, point: 2)
       expect(answer).to be_valid
     end
   end
 
   describe "モデルのメソッド" do
-    let!(:user) { FactoryBot.create(:user, email: "answertest@example.com") }
-    let!(:user2) { FactoryBot.create(:user, name: "user2", email: "answertest2@example.com") }
-    let!(:psychology_test) { FactoryBot.create(:psychology_test) }
-    let!(:psychology_test2) { FactoryBot.create(:psychology_test, title: "心理テスト2") }
-    let!(:personality) { FactoryBot.create(:personality, psychology_test: psychology_test) }
-    let!(:personality2) { FactoryBot.create(:personality, psychology_test: psychology_test2) }
-    let!(:question) { FactoryBot.create(:question, personality: personality) }
-    let!(:question2) { FactoryBot.create(:question, personality: personality2) }
-    let!(:answer) { FactoryBot.create(:answer, question: question, user: user, created_at: "2022-08-25 12:00", point: 1) }
-    let!(:answer2) { FactoryBot.create(:answer, question: question2, user: user2, created_at: "2022-08-25 12:00", point: 2) }
-    let!(:answer3) { FactoryBot.create(:answer, question: question, user: user, created_at: "2022-08-30 15:00", point: 5) }
+    let!(:user) { create(:user, email: "answertest@example.com") }
+    let!(:user2) { create(:user, name: "user2", email: "answertest2@example.com") }
+    let!(:psychology_test) { create(:psychology_test) }
+    let!(:psychology_test2) { create(:psychology_test, title: "心理テスト2") }
+    let!(:personality) { create(:personality, psychology_test: psychology_test) }
+    let!(:personality2) { create(:personality, psychology_test: psychology_test2) }
+    let!(:question) { create(:question, personality: personality) }
+    let!(:question2) { create(:question, personality: personality2) }
+    let!(:answer) { create(:answer, question: question, user: user, created_at: "2022-08-25 12:00", point: 1) }
+    let!(:answer2) { create(:answer, question: question2, user: user2, created_at: "2022-08-25 12:00", point: 2) }
+    let!(:answer3) { create(:answer, question: question, user: user, created_at: "2022-08-30 15:00", point: 5) }
 
     example "scoped_by_psychology_testメソッドで特定のテストに紐づいた回答を抽出できる" do
       scoped_answers = Answer.scoped_by_psychology_test(psychology_test)

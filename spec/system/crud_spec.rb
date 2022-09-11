@@ -3,16 +3,16 @@ require "system/helper"
 include RSpecHelper
 
 RSpec.describe "CRUD機能", type: :system do
-  let!(:user) { FactoryBot.create(:user) }
-  let!(:category1) { FactoryBot.create(:category, name: "カテゴリ1", id: 1) }
-  let!(:category2) { FactoryBot.create(:category, name: "カテゴリ2", id: 2) }
-  let!(:psychology_test1) { FactoryBot.create(:psychology_test, title: "心理テスト1", description: "説明1", referrer: "参照元1", category_ids: [1]) }
-  let!(:psychology_test2) { FactoryBot.create(:psychology_test, title: "心理テスト2", description: "説明2", referrer: "参照元2", category_ids: [2]) }
-  let!(:personality1) { FactoryBot.create(:personality, psychology_test: psychology_test1) }
-  let!(:personality2) { FactoryBot.create(:personality, psychology_test: psychology_test2) }
-  let!(:question1_1) { FactoryBot.create(:question, personality: personality1, title: "設問1-1") }
-  let!(:question1_2) { FactoryBot.create(:question, personality: personality1, title: "設問1-2") }
-  let!(:question2) { FactoryBot.create(:question, personality: personality2, title: "設問2") }
+  let!(:user) { create(:user) }
+  let!(:category1) { create(:category, name: "カテゴリ1", id: 1) }
+  let!(:category2) { create(:category, name: "カテゴリ2", id: 2) }
+  let!(:psychology_test1) { create(:psychology_test, title: "心理テスト1", description: "説明1", referrer: "参照元1", category_ids: [1]) }
+  let!(:psychology_test2) { create(:psychology_test, title: "心理テスト2", description: "説明2", referrer: "参照元2", category_ids: [2]) }
+  let!(:personality1) { create(:personality, psychology_test: psychology_test1) }
+  let!(:personality2) { create(:personality, psychology_test: psychology_test2) }
+  let!(:question1_1) { create(:question, personality: personality1, title: "設問1-1") }
+  let!(:question1_2) { create(:question, personality: personality1, title: "設問1-2") }
+  let!(:question2) { create(:question, personality: personality2, title: "設問2") }
 
   describe "心理テスト回答関連" do
     before { log_in(user) }
@@ -52,8 +52,8 @@ RSpec.describe "CRUD機能", type: :system do
     end
 
     it "マイページに回答結果が表示される" do
-      FactoryBot.create(:answer, question: question1_1, user: user, point: 1)
-      FactoryBot.create(:answer, question: question1_2, user: user, point: 2)
+      create(:answer, question: question1_1, user: user, point: 1)
+      create(:answer, question: question1_2, user: user, point: 2)
       visit user_path(user)
       expect(page).to have_content "心理テスト1"
       expect(page).to have_content "回答日時"
@@ -119,8 +119,8 @@ RSpec.describe "CRUD機能", type: :system do
       end
 
       it "未回答の心理テストだけ表示できる" do
-        FactoryBot.create(:answer, question: question1_1, user: user, point: 1)
-        FactoryBot.create(:answer, question: question1_2, user: user, point: 2)
+        create(:answer, question: question1_1, user: user, point: 1)
+        create(:answer, question: question1_2, user: user, point: 2)
         click_link "未回答のみ表示"
         expect(page).not_to have_content "心理テスト1"
         expect(page).to have_content "心理テスト2"

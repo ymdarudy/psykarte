@@ -16,7 +16,7 @@ RSpec.describe "新規登録・ログイン機能", type: :system do
   end
 
   describe "ログイン関連" do
-    let!(:user) { FactoryBot.create(:user) }
+    let!(:user) { create(:user) }
     it "通常ユーザーとしてログインできる" do
       log_in(user)
       expect(page).to have_content "ログインしました。"
