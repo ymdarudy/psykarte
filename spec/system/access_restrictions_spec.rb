@@ -3,8 +3,8 @@ require "system/helper"
 include RSpecHelper
 
 RSpec.describe "アクセス制限機能", type: :system do
-  let!(:user) { FactoryBot.create(:user, admin: false) }
-  let!(:admin_user) { FactoryBot.create(:user, name: "admin", email: "admin@example.com", admin: true) }
+  let!(:user) { create(:user, admin: false) }
+  let!(:admin_user) { create(:user, name: "admin", email: "admin@example.com", admin: true) }
   describe "一般ページのアクセス制限" do
     it "一般ユーザーでは他のユーザーのマイページにアクセスできない" do
       log_in(user)
