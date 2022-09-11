@@ -32,7 +32,7 @@ RSpec.describe PsychologyTest, type: :model do
 
   describe "モデルのメソッド" do
     let!(:user) { create(:user) }
-    let!(:user2) { create(:user, name: "user2", email: "test2@example.com") }
+    let!(:user2) { create(:user, name: "user2") }
     let!(:psychology_test) { create(:psychology_test) }
     let!(:psychology_test2) { create(:psychology_test, title: "心理テスト2") }
     let!(:personality) { create(:personality, psychology_test: psychology_test) }
