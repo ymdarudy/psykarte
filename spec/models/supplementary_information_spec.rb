@@ -10,8 +10,14 @@ RSpec.describe SupplementaryInformation, type: :model do
       expect(supplementary_information).to be_valid
     end
 
-    example "site_urlは必須" do
+    example "site_urlは必須、かつ所定のフォーマット" do
       supplementary_information = build(:supplementary_information, site_url: "")
+      expect(supplementary_information).to be_invalid
+
+      supplementary_information = build(:supplementary_information, site_url: "http:// kuuhakuari")
+      expect(supplementary_information).to be_invalid
+
+      supplementary_information = build(:supplementary_information, site_url: "http://日本語")
       expect(supplementary_information).to be_invalid
 
       supplementary_information = build(:supplementary_information, site_url: "http://www.example.com")

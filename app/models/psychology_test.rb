@@ -9,6 +9,7 @@ class PsychologyTest < ApplicationRecord
   validates :title, presence: true, length: { maximum: 255 }
   validates :description, presence: true
   validates :referrer, presence: true
+  validates :referrer_url, format: /\A#{URI::regexp(%w(http https))}\z/, allow_blank: true
 
   scope :scoped_by_user_answered, ->(user) {
       where(personalities: Personality.
