@@ -21,7 +21,8 @@
 <%= link_to psychology_tests_path(favorite: true), class: "btn btn-sm btn-outline-primary px-3" do %>
   <%= icon("star-fill", class: "star-search me-1") %>お気に入りのみ表示
 <% end %>
-<%= link_to "表示リセット", psychology_tests_path, method: :get, class: "btn btn-sm btn-outline-danger px-3 ms-1" if request.fullpath.include?("=") %>
+<%= link_to "表示リセット", psychology_tests_path, method: :get, 
+class: "btn btn-sm btn-outline-danger px-3 ms-1" if request.fullpath.include?("=") %>
 <p><small>※未回答表示、お気に入り表示は、タイトル、カテゴリ検索とは併用不可</small></p>
 
 <hr>
@@ -48,7 +49,8 @@
   <small>
     参照元:
     <%= icon("link") %>
-    <%= link_to p_test.referrer, p_test.referrer_url, target: :_blank, rel: "noopener noreferrer" %>
+    <%= link_to_if p_test.referrer_url.present?, p_test.referrer, p_test.referrer_url,
+     target: :_blank, rel: "noopener noreferrer" %>
   </small>
   <hr>
 <% end %>
