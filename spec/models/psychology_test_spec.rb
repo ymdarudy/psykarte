@@ -28,6 +28,23 @@ RSpec.describe PsychologyTest, type: :model do
       psychology_test = build(:psychology_test, referrer: "参照元")
       expect(psychology_test).to be_valid
     end
+
+    example "referrer_urlは所定のフォーマット（ただし空白とnilは許可）" do
+      psychology_test = build(:psychology_test, referrer_url: "")
+      expect(psychology_test).to be_valid
+
+      psychology_test = build(:psychology_test, referrer_url: nil)
+      expect(psychology_test).to be_valid
+
+      psychology_test = build(:psychology_test, referrer_url: "http:// kuuhakuari")
+      expect(psychology_test).to be_invalid
+
+      psychology_test = build(:psychology_test, referrer_url: "http://日本語")
+      expect(psychology_test).to be_invalid
+
+      psychology_test = build(:psychology_test, referrer_url: "https://example.com")
+      expect(psychology_test).to be_valid
+    end
   end
 
   describe "モデルのメソッド" do
