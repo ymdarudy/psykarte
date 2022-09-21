@@ -22,9 +22,9 @@
           </h2>
         <% end %>
         <% if user_signed_in? %>
-          <h8 class="text-light"><%= current_user.name %>
+          <p class="text-light login-status"><%= current_user.name %>
             <small>でログイン中</small>
-          </h8>
+          </p>
         <% end %>
 
         <button class="navbar-toggler" type="button"
