@@ -66,10 +66,10 @@
         <% midpoint = (question.choice_min_point + question.choice_max_point)/2.to_f %>
         <div class="col-6 col-md-4 hstack d-flex justify-content-between">
           <% choice_points.each do |point| %>
-            <% question_point == point ? check = true : check = false %>
+            <% check = (question_point == point) %>
             <%= radio_button :answer, question.id, point, {
           style: "transform:scale(#{((midpoint - point).abs/2.to_f) + 1})",
-          checked: check,
+          checked: check, disabled: !check
           } %>
           <% end %>
         </div>

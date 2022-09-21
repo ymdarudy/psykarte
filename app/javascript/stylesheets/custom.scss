@@ -86,5 +86,8 @@ margin-top: -80px;
 
 .heart-fill {
   fill: rgb(227, 159, 159);
-  // stroke: rgb(195, 195, 195);
+}
+
+input[type="radio"] {
+  cursor: pointer;
 }
