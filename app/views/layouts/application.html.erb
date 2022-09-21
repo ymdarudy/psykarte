@@ -17,11 +17,8 @@
       <div class="container-fluid">
         <%= link_to root_path, class: "navbar-brand hstack" do  %>
           <%= icon("clipboard2-heart-fill", class: "heart-fill", width: "28", height: "28") %>
-          <h2 class="fw-bold mb-0 text-white">
-            Psy
-          </h2>
           <h2 class="fw-bold mb-0">
-            karte
+            <span class="text-white">Psy</span>karte
           </h2>
         <% end %>
         <% if user_signed_in? %>
