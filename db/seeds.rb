@@ -9,7 +9,7 @@
 require "csv"
 
 # User
-admin_user = User.create(name: "山田", email: "test@email.com", password: "123123", avatar: File.open("./app/assets/images/yamada.png"), admin: true)
+admin_user = User.create(name: "山田", email: "test@email.com", password: "123123", avatar: File.open("./app/assets/images/yamada.webp"), admin: true)
 normal_user = User.create(name: "青野", email: "test2@email.com", password: "123123")
 User.create([
   { name: "遠藤", email: "test3@email.com", password: "123123" },
