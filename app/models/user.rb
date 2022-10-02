@@ -11,16 +11,16 @@ class User < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 50 }
 
-  scope :guest, -> {
+  scope :guest, -> do
           find_or_create_by!(name: "ゲスト", email: "guest@example.com") do |user|
             user.password = SecureRandom.urlsafe_base64
           end
-        }
+        end
 
-  scope :guest_admin, -> {
+  scope :guest_admin, -> do
           find_or_create_by!(name: "ゲスト管理者", email: "guestadmin@example.com") do |user|
             user.password = SecureRandom.urlsafe_base64
             user.admin = true
           end
-        }
+        end
 end

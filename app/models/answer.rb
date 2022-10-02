@@ -4,16 +4,22 @@ class Answer < ApplicationRecord
 
   validates :point, presence: true, numericality: { only_integer: true }
 
-  scope :scoped_by_psychology_test, ->(p_test) {
+  scope :scoped_by_psychology_test, ->(p_test) do
           where(question: Question.
                   where(personality: Personality.
                           where(psychology_test: p_test)))
-        }
-  scope :scoped_by_personality, ->(personality) {
+        end
+
+  scope :scoped_by_personality, ->(personality) do
           where(question: Question.
                   where(personality: personality))
-        }
-  scope :answered_times, -> { select(:point, :created_at).group_by { |record| record.created_at.strftime("%Y-%m-%d %H:%M") }.keys }
+        end
 
-  scope :points_with_answered_times, -> { select(:point, :created_at).group_by { |record| record.created_at.strftime("%Y-%m-%d %H:%M") } }
+  scope :answered_times, -> do
+          select(:point, :created_at).group_by { |record| record.created_at.strftime("%Y-%m-%d %H:%M") }.keys
+        end
+
+  scope :points_with_answered_times, -> do
+          select(:point, :created_at).group_by { |record| record.created_at.strftime("%Y-%m-%d %H:%M") }
+        end
 end
