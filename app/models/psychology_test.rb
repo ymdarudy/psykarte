@@ -11,15 +11,15 @@ class PsychologyTest < ApplicationRecord
   validates :referrer, presence: true
   validates :referrer_url, format: /\A#{URI::regexp(%w(http https))}\z/, allow_blank: true
 
-  scope :scoped_by_user_answered, ->(user) {
-      where(personalities: Personality.
-              where(questions: Question.
-                      where(answers: user.answers)))
-    }
+  scope :scoped_by_user_answered, ->(user) do
+          where(personalities: Personality.
+                  where(questions: Question.
+                          where(answers: user.answers)))
+        end
 
-  scope :scoped_by_user_unanswered, ->(user) {
+  scope :scoped_by_user_unanswered, ->(user) do
           where(personalities: Personality.
                   where(questions: Question.
                           where.not(answers: user.answers)))
-        }
+        end
 end
