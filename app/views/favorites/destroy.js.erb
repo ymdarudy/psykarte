@@ -1,1 +1,2 @@
-$("#favorite_button_"+"<%= @psychology_test.id %>").html("<%= escape_javascript(render partial: 'favorites/favorite_button', locals: { p_test: @psychology_test } ) %>")
+$("#favorite_button_"+"<%= @psychology_test.id %>").html("<%= j(render partial: 'favorites/favorite_button', locals: { p_test: @psychology_test } ) %>")
+// $("#favorite_button_"+"<%= @psychology_test.id %>").html("<%= escape_javascript(render partial: 'favorites/favorite_button', locals: { p_test: @psychology_test } ) %>")
